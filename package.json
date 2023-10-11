@@ -1,8 +1,8 @@
 {
-  "name": "biblioteca",
-  "productName": "biblioteca",
+  "name": "Laboratorio",
+  "productName": "Laboratorio",
   "version": "1.0.0",
-  "description": "Biblioteca Virtual",
+  "description": "Registro para laboratorio",
   "main": "src/main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -13,10 +13,9 @@
   },
   "keywords": [],
   "author": {
-    "name": "Diego Carmona Bernal",
-    "email": "cbdiegox@gmail.com"
+    "name": "Varios autores"
   },
-  "license": "MIT",
+  "license": "BUAP",
   "config": {
     "forge": {
       "packagerConfig": {},
@@ -24,7 +23,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "biblioteca"
+            "name": "Laboratorio"
           }
         },
         {
