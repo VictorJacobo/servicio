@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Registro servicio</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="./../../node_modules/sweetalert2/dist/sweetalert2.min.css">
 </head>
 
 <body>
@@ -49,15 +50,14 @@
             <div class="row mb-4">
                 <div class="col-12 d-flex flex-column align-items-center">
                     <h6>Identificate</h6>
-                    <form onsubmit="return formSubmit(event)">
+                    <form onsubmit="return formSubmitM(event)">
                         <div class="mb-3">
                             <label for="matricula" class="form-label">Matricula</label>
                             <input placeholder="Matricula" type="text" class="form-control form-control-sm" id="matri"
                                 name="matri">
                         </div>
                         <div class="mb-3 col-12 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-sm"
-                                formaction="./prestamo.html">Enviar</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
                         </div>
                     </form>
                     <div class="row">
@@ -81,15 +81,14 @@
             <div class="row">
                 <div class="col-12 d-flex flex-column align-items-center">
                     <h6>Producto</h6>
-                    <form>
+                    <form onsubmit="return formSubmitE(event)">
                         <div class="mb-3">
                             <label for="producto" class="form-label">Código</label>
                             <input placeholder="Código" type="text" class="form-control form-control-sm" id="product"
                                 name="product">
                         </div>
                         <div class="mb-3 col-12 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-sm"
-                                formaction="./prestamo.html">Enviar</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
                         </div>
                     </form>
                     <div class="col-12">
@@ -103,7 +102,7 @@
             </div>
         </div>
         <div class="col-sm-8">
-            <form>
+            <form onsubmit="return EnviarPrestamo(event)">
                 <fieldset disabled>
                     <div class="row">
                         <div class="col-sm-6">
@@ -159,13 +158,19 @@
                         </div>
                     </div>
                 </fieldset>
-                <div class="mb-3 col-12 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary" formaction="./devolucion.html">Enviar</button>
+                <div class="row d-flex justify-content-center">
+                    <div class="mb-3 col-2 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary" id="btnEnviar" disabled>Enviar</button>
+                    </div>
+                    <div class="mb-3 col-2 d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" id="btnLimpiar" disabled>Limpiar</button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
     <script src="./../assets/vendors/boot/js/bootstrap.js"></script>
+    <script src="./../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="./js/prestar.js"></script>
 </body>
 

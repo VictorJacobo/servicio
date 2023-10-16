@@ -5,8 +5,9 @@ const ipc = {
     'render': {
         'send': [
             'login',
-            'logout',
-            'consulta'/*,
+            'logout'/*,
+            'consulta',
+            'consultaE'
             'invitado',
             'addBook',
             'updateBook',
@@ -17,11 +18,13 @@ const ipc = {
         'sendReceive': [
             'getDatos',
             'getUserData',
+            'getEquipoData',
+            'registraPrestamo'/*
             'getBooks',
             'getBook',
             'confirmAddBook',
             'confirmUpdateBook',
-            'confirmDeleteBook'
+            'confirmDeleteBook'*/
         ]
     }
 };

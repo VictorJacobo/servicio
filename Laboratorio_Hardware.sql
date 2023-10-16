@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3307
--- Tiempo de generación: 11-10-2023 a las 15:54:42
+-- Tiempo de generación: 16-10-2023 a las 11:02:52
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -29,11 +29,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alumnos` (
   `Matricula_A` int(11) NOT NULL,
-  `Nombre(s)` varchar(45) NOT NULL,
+  `Nombres` varchar(45) NOT NULL,
   `Apellidos` varchar(45) NOT NULL,
   `Correo` varchar(45) NOT NULL,
-  `Carrera` varchar(45) NOT NULL
+  `Carrera` varchar(45) NOT NULL,
+  `lista` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `alumnos`
+--
+
+INSERT INTO `alumnos` (`Matricula_A`, `Nombres`, `Apellidos`, `Correo`, `Carrera`, `lista`) VALUES
+(201930012, 'Victor Manuel', 'Jacobo Perez', 'victor.jacobo@alumno.buap.mx', 'Ing. en Ciencias de la Computación', 0);
 
 -- --------------------------------------------------------
 
@@ -43,9 +51,17 @@ CREATE TABLE `alumnos` (
 
 CREATE TABLE `aministradores` (
   `Matricula_Admin` int(11) NOT NULL,
-  `Nombre(s)` varchar(45) NOT NULL,
-  `Apellidos` varchar(45) NOT NULL
+  `Nombres` varchar(45) NOT NULL,
+  `Apellidos` varchar(45) NOT NULL,
+  `contrasena` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `aministradores`
+--
+
+INSERT INTO `aministradores` (`Matricula_Admin`, `Nombres`, `Apellidos`, `contrasena`) VALUES
+(201930012, 'Victor Manuel', 'Jacobo Perez', '1234');
 
 -- --------------------------------------------------------
 
@@ -216,6 +232,13 @@ CREATE TABLE `prestamos` (
   `Fecha_P` datetime NOT NULL,
   `Fecha_D` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `prestamos`
+--
+
+INSERT INTO `prestamos` (`Matricula_A`, `Matricula_Admin`, `IdEquipo`, `Fecha_P`, `Fecha_D`) VALUES
+(201930012, 201930012, 'ELVI-001', '2023-10-16 08:59:50', '0000-00-00 00:00:00');
 
 --
 -- Índices para tablas volcadas

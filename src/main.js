@@ -3,7 +3,7 @@ const electronBrowserWindow = require('electron').BrowserWindow;
 const electronIpcMain = require('electron').ipcMain;
 const Store = require('electron-store');
 const store = new Store();
-const aux = new Store();
+let aux = new Store();
 const path = require('path');
 const db = require('./connection');
 
@@ -90,7 +90,7 @@ electronIpcMain.on('login', (event, data) => {
 
 function validateLogin(data) {
     const { usuario, password } = data;
-    const sql = 'SELECT * FROM usuarios WHERE usuario=? AND contrasena=?';
+    const sql = 'SELECT * FROM aministradores WHERE Matricula_Admin=? AND contrasena=?';
 
     db.query(sql, [usuario, password], (error, results, fields) => {
         if (error) {
@@ -98,7 +98,16 @@ function validateLogin(data) {
         }
 
         if (results.length > 0) {
-            store.set('user', results[0].usuario);
+            if (results[0].Nombres.includes(' ')) {
+                // Dividir la cadena por espacio
+                const nombresArray = results[0].Nombres.split(' ');
+                store.set('user', nombresArray[0]);
+            } else {
+                store.set('user', results[0].Nombres);
+            }
+            store.set('matricula', results[0].Matricula_Admin);
+            console.log(store.get('user'));
+            console.log(store.get('matricula'));
             createWindowDashboard();
             window.maximize();
             window.show();
@@ -107,25 +116,90 @@ function validateLogin(data) {
     });
 }
 
-electronIpcMain.on('consulta', (event, data) => {
+
+//Apartado donde se consulta la informacion de un alumno en base a su matricula
+electronIpcMain.handle('getDatos', async (event, data) => {
     const { matricula } = data;
-    const sql = 'SELECT * FROM alumno WHERE Matricula_A=?';
-    db.query(sql, [matricula], (error, results, fields) => {
-        if (error) {
-            console.log(error);
-        }
+    const sql = 'SELECT * FROM alumnos WHERE Matricula_A=?';
+
+    try {
+        const results = await queryAsync(sql, [matricula]);
 
         if (results.length > 0) {
-            aux.set('matricula', results[0].Matricula_A);
-            aux.set('nombre', results[0].Nombres);
-            aux.set('apellido', results[0].Apellidos);
-            aux.set('correo', results[0].Correo);
-            aux.set('carrera', results[0].Carrera);
-        } 
+            const aux = {
+                matricula: results[0].Matricula_A,
+                nombre: results[0].Nombres,
+                apellido: results[0].Apellidos,
+                correo: results[0].Correo,
+                carrera: results[0].Carrera,
+                lista: results[0].lista
+            };
+            return aux;
+        } else {
+            // Puedes manejar el caso en que no se encuentren resultados.
+            console.log("No se encontraron resultados.");
+            return null;
+        }
+    } catch (error) {
+        // Manejar errores de consulta.
+        console.error(error);
+        return null;
+    }
+});
+
+
+//Aparto donde se consulta informacion d eun equipo
+electronIpcMain.handle('getEquipoData', async (event, data) => {
+    const { equipo } = data;
+    const sql = 'SELECT * FROM equipo WHERE idEquipo=?';
+
+    try {
+        const results = await queryAsync(sql, [equipo]);
+        
+        if (results.length > 0) {
+            const auxE = {
+                id: results[0].idEquipo,
+                marca: results[0].Marca,
+                modelo: results[0].Modelo,
+                tipo: results[0].Tipo
+            };
+            return auxE;
+        } else {
+            // Puedes manejar el caso en que no se encuentren resultados.
+            console.log("No se encontraron resultados.");
+            return null;
+        }
+    } catch (error) {
+        // Manejar errores de consulta.
+        console.error(error);
+        return null;
+    }
+});
+
+//Aparto donde se consulta informacion d eun equipo
+electronIpcMain.handle('registraPrestamo', async (event, data) => {
+    const { Amatricula, equipo, fecha } = data;
+    const sql = 'INSERT INTO prestamos (Matricula_A, Matricula_Admin, IdEquipo, Fecha_P) VALUES (?, ?, ?, ?)';
+
+    try {
+        await queryAsync(sql, [Amatricula, store.get('matricula'), equipo, fecha]);
+        console.log("Registro exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al registrar:", error);
+        return false;
+    }
+});
+
+// Función que envuelve la consulta a la base de datos en una promesa.
+function queryAsync(sql, values) {
+    return new Promise((resolve, reject) => {
+        db.query(sql, values, (error, results, fields) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
     });
-});
-electronIpcMain.handle('getDatos', (event) => {
-    const data = { matricula:aux.get('matricula'), nombre:aux.get('nombre'), apellido:aux.get('apellido'), correo:aux.get('correo'), carrera:aux.get('carrera')};
-    console.log(data.matricula)
-    return data;
-});
+}
