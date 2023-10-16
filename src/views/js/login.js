@@ -34,6 +34,7 @@ const formSubmit = (event) => {
     return false;
 }
 
+//Este es el login
 const login = () => {
     if (!(usuario.value == '' && password.value == '')) {
         const data = { usuario: usuario.value, password: password.value };
