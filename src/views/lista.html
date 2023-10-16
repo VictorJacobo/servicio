@@ -2,49 +2,49 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Registro servicio</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Registro servicio</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-6 d-flex align-items-center">
-                  <h4>Laboratorio</h4>
-                </div>
-                <div class="col-6 d-flex flex-row-reverse">
-                  <img src="./../assets/images/user.png">
-                </div>
-              </div>
-            </div>
-          </nav>
-    </header>
-    <div class="row buton-r">
-      <div class="col-2">
-          <button class="btn btn-primary" type="submit" formaction="./prestamo.html">Prestámo</button>
+  <header>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6 d-flex align-items-center">
+            <h4>Laboratorio</h4>
+          </div>
+          <div class="col-6 d-flex flex-row-reverse">
+            <img src="./../assets/images/user.png">
+          </div>
+        </div>
       </div>
-      <div class="col-2">
-          <button class="btn btn-primary" type="submit" formaction="./devolucion.html">Devolución</button>
-      </div>
-      <div class="col-2">
-          <button class="btn btn-primary" type="submit" formaction="./equipos.html">Equipos</button>
-      </div>
-      <div class="col-2">
-          <button class="btn btn-primary" type="submit" formaction="./historial.html">Historial</button>
-      </div>
-      <div class="col-2">
-          <button class="btn btn-primary" type="submit" formaction="./lista.html" disabled>Lista negra</button>
-      </div>
-      <div class="col-2">
-          <button class="btn btn-primary" type="submit" formaction="./usuarios.html">Usuarios</button>
-      </div>
+    </nav>
+  </header>
+  <div class="row buton-r">
+    <div class="col-2">
+      <a class="btn btn-primary" href="./prestamo.html" role="button">Prestámo</a>
+    </div>
+    <div class="col-2">
+      <a class="btn btn-primary" href="./equipos.html" role="button">Devolución</a>
+    </div>
+    <div class="col-2">
+      <a class="btn btn-primary" href="./historial.html" role="button">Equipos</a>
+    </div>
+    <div class="col-2">
+      <a class="btn btn-primary" href="./lista.html" role="button">Historial</a>
+    </div>
+    <div class="col-2">
+      <a class="btn btn-primary disabled" href="./devolucion.html" role="button" aria-disabled="true">Lista negra</a>
+    </div>
+    <div class="col-2">
+      <a class="btn btn-primary" href="./usuarios.html" role="button">Usuarios</a>
+    </div>
   </div>
-    <script src="./../assets/vendors/boot/js/bootstrap.js"></script>
+  <script src="./../assets/vendors/boot/js/bootstrap.js"></script>
 </body>
 
 </html>
