@@ -6,6 +6,7 @@ const store = new Store();
 let aux = new Store();
 const path = require('path');
 const db = require('./connection');
+const fs = require('fs');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -115,6 +116,24 @@ function validateLogin(data) {
         }
     });
 }
+electronIpcMain.on('configuracion', (event, data) => {
+    //const { ipserver, ipcamara, puertolec } = data;
+    // Ruta del archivo JSON
+    const rutaArchivo = 'configuracion.json';
+
+    // Convertir los datos a formato JSON
+    const datosJSON = JSON.stringify(data);
+
+    // Escribir los datos en el archivo JSON
+    fs.writeFile(rutaArchivo, datosJSON, 'utf-8', (err) => {
+    if (err) {
+      console.error('Error al escribir en el archivo JSON:', err);
+    } else {
+      console.log('Datos guardados correctamente en el archivo JSON.');
+    }
+  });
+
+});
 
 
 //Apartado donde se consulta la informacion de un alumno en base a su matricula

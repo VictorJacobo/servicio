@@ -5,7 +5,8 @@ const ipc = {
     'render': {
         'send': [
             'login',
-            'logout'/*,
+            'logout',
+            'configuracion'/*,
             'consulta',
             'consultaE'
             'invitado',
