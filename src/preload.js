@@ -6,11 +6,8 @@ const ipc = {
         'send': [
             'login',
             'logout',
-<<<<<<< HEAD
+            'configuracion',
             'openConf'/*,
-=======
-            'configuracion'/*,
->>>>>>> 1c66cc5268dbd7246e5e7ae2ff3bb979d783e159
             'consulta',
             'consultaE'
             'invitado',

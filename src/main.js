@@ -77,7 +77,7 @@ const createConf = () => {
     });
 
     // and load the index.html of the app.
-    loginWindow.loadFile(path.join(__dirname, 'views/login.html'));
+    loginWindow.loadFile(path.join(__dirname, 'views/configuracion.html'));
 };
 
 // This method will be called when Electron has finished
