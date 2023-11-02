@@ -10,3 +10,16 @@ const formSubmit = (event) => {
     const configuracion = { Ipserver: Ipserver.value, Ipcamara: Ipcamara.value, Puertolector: Puertolector.value };
     window.ipcRender.send('configuracion', configuracion);
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+
+        window.ipcRender.invoke('getConfiguracion').then((result) => {
+    
+            if (result != null){
+                Ipserver.value=result.Ipserver;
+                Ipcamara.value=result.Ipcamara;
+                Puertolector.value=result.Puertolector;
+            }
+        })
+
+    })

@@ -135,7 +135,8 @@ function validateLogin(data) {
 electronIpcMain.on('configuracion', (event, data) => {
     //const { ipserver, ipcamara, puertolec } = data;
     // Ruta del archivo JSON
-    const rutaArchivo = 'configuracion.json';
+    console.log(data)
+    const rutaArchivo = './src/configuracion.json';
 
     // Convertir los datos a formato JSON
     const datosJSON = JSON.stringify(data);
@@ -228,6 +229,22 @@ electronIpcMain.handle('registraPrestamo', async (event, data) => {
         console.error("Error al registrar:", error);
         return false;
     }
+});
+electronIpcMain.handle('getConfiguracion', (event) =>{
+
+    const configFilePath = path.join(__dirname, 'configuracion.json'); // Ruta al archivo JSON
+
+    let configData;
+
+    try {
+    const data = fs.readFileSync(configFilePath, 'utf-8');
+    configData = JSON.parse(data);
+    } catch (error) {
+    console.error('Error al leer el archivo de configuración:', error);
+    process.exit(1); // Puedes manejar el error de acuerdo a tus necesidades
+    }
+
+    return configData;
 });
 
 // Función que envuelve la consulta a la base de datos en una promesa.

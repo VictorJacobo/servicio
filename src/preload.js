@@ -21,7 +21,8 @@ const ipc = {
             'getDatos',
             'getUserData',
             'getEquipoData',
-            'registraPrestamo'/*
+            'registraPrestamo',
+            'getConfiguracion'/*
             'getBooks',
             'getBook',
             'confirmAddBook',
