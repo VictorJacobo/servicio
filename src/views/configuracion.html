@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Configuración</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="./../../node_modules/sweetalert2/dist/sweetalert2.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 d-flex align-items-center">
+                        <h4>Configuración</h4>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+  
+    <div class="row prestamo">
+        
+        <div class="col-sm-8">
+            <form onsubmit="return formSubmit(event)">
+                        <div class="col-sm-6">
+                            <div class="mb-4">
+                                <label for="ipservidor" class="form-label">Ip del servidor</label>
+                                <input placeholder="127.0.0.0" type="text" class="form-control form-control-sm"
+                                    id="ipserver" name="ipserver">
+                            </div>
+                            <div class="mb-4">
+                                <label for="ipcamara" class="form-label">Ip de la camara </label>
+                                <input placeholder="127.0.0.0" type="text" class="form-control form-control-sm"
+                                    id="ipcam" name="ipcam">
+                            </div>
+                            <div class="mb-4">
+                                <label for="puertolector" class="form-label">Puerto del lector</label>
+                                <input placeholder="COM 3" type="text" class="form-control form-control-sm"
+                                    id="puertolec" name="puertolec">
+                            </div> 
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary" id="btnLogin">Guardar</button>
+                            </div>
+                        </div>
+
+                
+                
+            </form>
+        </div>
+    </div>
+    <script src="./../assets/vendors/boot/js/bootstrap.js"></script>
+    <script src="./../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="./js/configuracion.js"></script>
+</body>
+
+</html>
