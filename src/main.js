@@ -58,6 +58,27 @@ const createWindow = () => {
     loginWindow.loadFile(path.join(__dirname, 'views/login.html'));
 };
 
+const createConf = () => {
+    // Create the browser window.
+    loginWindow = new electronBrowserWindow({
+        //icon: __dirname + '/assets/images/favicon.ico',
+        width: 500,
+        height: 470,
+        resizable: false,
+        maximizable: false,
+        //autoHideMenuBar: true,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: true,
+            //devTools: false,
+            preload: path.join(__dirname, 'preload.js')
+        }
+    });
+
+    // and load the index.html of the app.
+    loginWindow.loadFile(path.join(__dirname, 'views/login.html'));
+};
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -98,14 +119,9 @@ function validateLogin(data) {
         }
 
         if (results.length > 0) {
-            if (results[0].Nombres.includes(' ')) {
-                // Dividir la cadena por espacio
-                const nombresArray = results[0].Nombres.split(' ');
-                store.set('user', nombresArray[0]);
-            } else {
-                store.set('user', results[0].Nombres);
-            }
+            store.set('user', results[0].Nombres);
             store.set('matricula', results[0].Matricula_Admin);
+            store.set('img', './assets/images/user.png')
             console.log(store.get('user'));
             console.log(store.get('matricula'));
             createWindowDashboard();
@@ -116,6 +132,10 @@ function validateLogin(data) {
     });
 }
 
+electronIpcMain.on('openConf', (event) => {
+    createConf();
+    window.show();
+});
 
 //Apartado donde se consulta la informacion de un alumno en base a su matricula
 electronIpcMain.handle('getDatos', async (event, data) => {

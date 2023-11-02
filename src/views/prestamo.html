@@ -19,7 +19,26 @@
                         <h4>Laboratorio</h4>
                     </div>
                     <div class="col-6 d-flex flex-row-reverse">
-                        <img src="./../assets/images/user.png">
+                        <img src="./../assets/images/user.png" onclick="toggleMenu()" id="profileUser">
+                        <div class="menu-wrap" id="subMenu">
+                            <div class="menu">
+                                <div class="user-info">
+                                    <img src="./../assets/images/user.png">
+                                    <h6 id="#profileName">Nombre generico</h6>
+                                    <hr>
+                                    <a href="#" class="menu-link" id="btnConf">
+                                        <img src="./../assets/images/settings.svg">
+                                        <p>Configuración</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="menu-link" id="btnLogout">
+                                        <img src="./../assets/images/logout.svg">
+                                        <p>Cerrar sesión</p>
+                                        <span>></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -172,6 +191,7 @@
     <script src="./../assets/vendors/boot/js/bootstrap.js"></script>
     <script src="./../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="./js/prestar.js"></script>
+    <script src="./js/menu.js"></script>
 </body>
 
 </html>
