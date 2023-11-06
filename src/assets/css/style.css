@@ -1,4 +1,5 @@
 @import url("./../../../node_modules/bootstrap/dist/css/bootstrap.min.css");
+@import url("./../../../node_modules/sweetalert2/dist/sweetalert2.min.css");
 
 body {
     background-color: #f9fafb;
@@ -53,8 +54,26 @@ body {
     width: 100%;
 }
 
+.navbar button {
+    margin-left: 10px;
+}
+
+.navbar .col-6:nth-child(2) {
+    padding-right: 0;
+}
+
+
+
 .buton-r{
+    overflow: hidden;
     margin: 0 10px;
+    max-height: 0px;
+    transition: max-height 0.5s;
+}
+
+
+.buton-r.open-menu{
+    max-height: 400px;
 }
 
 .buton-r .col-2{
@@ -110,6 +129,10 @@ body {
     margin-right: 5px;
 }
 
+.user-info:hover img{
+    cursor: default;
+}
+
 .menu hr{
     border: 0;
     height: 3px;
@@ -160,6 +183,16 @@ body {
 
     .navbar img{
         width: 6vw;
+    }
+
+    .buton-r {
+        position: absolute;
+        background-color: white;
+        z-index: 1;
+    }
+
+    .buton-r .col-2{
+        width: 100%;
     }
 
     .prestamo{

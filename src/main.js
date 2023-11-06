@@ -16,6 +16,7 @@ if (require('electron-squirrel-startup')) {
 
 let window;
 let loginWindow;
+let ConfiWindow;
 
 const createWindowDashboard = () => {
     // Create the browser window.
@@ -61,7 +62,7 @@ const createWindow = () => {
 
 const createConf = () => {
     // Create the browser window.
-    loginWindow = new electronBrowserWindow({
+    ConfiWindow = new electronBrowserWindow({
         //icon: __dirname + '/assets/images/favicon.ico',
         width: 500,
         height: 470,
@@ -77,7 +78,7 @@ const createConf = () => {
     });
 
     // and load the index.html of the app.
-    loginWindow.loadFile(path.join(__dirname, 'views/configuracion.html'));
+    ConfiWindow.loadFile(path.join(__dirname, 'views/configuracion.html'));
 };
 
 // This method will be called when Electron has finished
@@ -122,7 +123,7 @@ function validateLogin(data) {
         if (results.length > 0) {
             store.set('user', results[0].Nombres);
             store.set('matricula', results[0].Matricula_Admin);
-            store.set('img', './assets/images/user.png')
+            store.set('img', './../assets/images/user.png')
             console.log(store.get('user'));
             console.log(store.get('matricula'));
             createWindowDashboard();
@@ -154,7 +155,7 @@ electronIpcMain.on('configuracion', (event, data) => {
 
 electronIpcMain.on('openConf', (event) => {
     createConf();
-    window.show();
+    ConfiWindow.show();
 });
 
 //Apartado donde se consulta la informacion de un alumno en base a su matricula
@@ -259,3 +260,19 @@ function queryAsync(sql, values) {
         });
     });
 }
+
+//Obtener informacion del usuario
+electronIpcMain.handle('getUserData', (event) => {
+    const data = { user: store.get('user'), img: store.get('img')};
+    return data;
+});
+
+
+electronIpcMain.on('logout', (event) => {
+    store.delete('user');
+    store.delete('matricula');
+    store.delete('img');
+    createWindow();
+    loginWindow.show();
+    window.close();
+});

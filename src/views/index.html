@@ -18,19 +18,22 @@
             <h4>Laboratorio</h4>
           </div>
           <div class="col-6 d-flex flex-row-reverse">
-            <img src="./../assets/images/user.png" onclick="toggleMenu()" id="#profileUser">
+            <button id="muestra" type="button" class="btn btn-primary btn-sm">
+              &#9660;
+            </button>
+            <img src="./../assets/images/user.png" onclick="toggleMenu()" id="profileUser1">
             <div class="menu-wrap" id="subMenu">
               <div class="menu">
                 <div class="user-info">
-                  <img src="./../assets/images/user.png">
-                  <h6 id="#profileName">Nombre generico</h6 >
+                  <img src="./../assets/images/user.png" id="profileUser2">
+                  <h6 id="profileName">Nombre generico</h6>
                   <hr>
-                  <a href="#" class="menu-link">
+                  <a href="#" class="menu-link" id="btnConf">
                     <img src="./../assets/images/settings.svg">
                     <p>Configuración</p>
                     <span>></span>
                   </a>
-                  <a href="#" class="menu-link" id="#btnLogout">
+                  <a href="#" class="menu-link" id="btnLogout">
                     <img src="./../assets/images/logout.svg">
                     <p>Cerrar sesión</p>
                     <span>></span>
@@ -43,7 +46,7 @@
       </div>
     </nav>
   </header>
-  <div class="row buton-r">
+  <div class="row buton-r" id="botones">
     <div class="col-2">
       <a class="btn btn-primary" href="./prestamo.html" role="button">Prestámo</a>
     </div>
@@ -64,8 +67,9 @@
     </div>
   </div>
   <script src="./../assets/vendors/boot/js/bootstrap.js"></script>
+  <script src="./../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
   <script src="./js/menu.js"></script>
-  
+  <script src="./js/login-user.js"></script>
 </body>
 
 </html>

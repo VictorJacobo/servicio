@@ -20,17 +20,33 @@ class Page {
     }
 
     loadDataUser() {
-        let profileUser = this.get('#profileUser');
+        let profileUser1 = this.get('#profileUser1');
+        let profileUser2 = this.get('#profileUser2');
         let profileName = this.get('#profileName');
         window.ipcRender.invoke('getUserData').then((result) => {
-            const { user, img} = result;
+            const { user, img } = result;
             profileName.innerHTML = user;
-            profileUser.src = img;
-            
+            profileUser1.src = img;
+            profileUser2.src = img;
+
         });
     }
 
     logout() {
-        window.ipcRender.send('logout', 'confirm-logout');
+        // Mostrar SweetAlert de confirmación
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¿Realmente desea cerrar sesión?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, continuar',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            // Si el usuario hace clic en "Aceptar", ejecuta la función Envia
+            if (result.isConfirmed) {
+                window.ipcRender.send('logout');
+            }
+        });
+
     }
 }
