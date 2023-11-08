@@ -5,33 +5,70 @@ body {
     background-color: #f9fafb;
 }
 
+.btn-primary{
+    background-color: #254ec9;
+}
+
+
+
+
 .full{
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     padding: 0 30vw;
+    background: rgb(21,41,124);
+    background: -moz-linear-gradient(0deg, rgba(21,41,124,1) 45%, rgba(38,132,181,1) 83%);
+    background: -webkit-linear-gradient(0deg, rgba(21,41,124,1) 45%, rgba(38,132,181,1) 83%);
+    background: linear-gradient(0deg, rgba(21,41,124,1) 45%, rgba(38,132,181,1) 83%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#15297c",endColorstr="#2684b5",GradientType=1);
 }
 
 .card {
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    padding: 40px 20px;
+    padding: 0;
+}
+
+.card .mb-3{
+    padding: 0 10px;
 }
 
 .login-c h4{
     font-weight: bold;
     color: darkblue;
+    text-align: center;
+}
+
+#text-error{
+    text-align: center;
 }
 
 .login-c img {
+
+}
+/* .login-c img {
     width:25%;
     margin: 20px 0;
+} */
+
+.head {
+    background-color: red;
+    border-radius: 5px 5px 0 0;
+    padding: 10px 0;
+    margin-bottom: 30px;
+}
+
+.card .row{
+    background-color: red;
+    border-radius: 0 0 5px 5px;
+    margin: 0;
 }
 
 .navbar {
-    background-color: white;
+    background-color: #efefec;
     border: solid 1px gray;
 }
 
@@ -67,13 +104,13 @@ body {
 .buton-r{
     overflow: hidden;
     margin: 0 10px;
-    max-height: 0px;
+    max-height: 100px;
     transition: max-height 0.5s;
 }
 
 
 .buton-r.open-menu{
-    max-height: 400px;
+    max-height: 0px;
 }
 
 .buton-r .col-2{
@@ -88,12 +125,36 @@ body {
 
 .prestamo{
     width: 100%;
-    padding: 20px;
+    padding: 20px 0 20px 3%;
 }
 
 .prestamo img{
     width: 30px;
     filter: invert(100%) grayscale(100%);
+}
+
+.prestamo .col-4{
+    color: white;
+    background-color: #306FD5;
+    border-radius: 10px;
+    padding: 20px 0;
+}
+
+.prestamo .col-4 .btn-primary{
+    background-color: #4AB4EF;
+}
+
+.prestamo .col-sm-8{
+    padding-left: 4%;
+}
+
+.prestamo h6{
+    text-align: center;
+    font-weight: bold;
+}
+
+.prestamo label{
+    font-weight: 500;
 }
 
 .menu-wrap{
@@ -198,9 +259,16 @@ body {
     .prestamo{
         display: flex;
         justify-content: center;
+        padding: 20px;
     }
+    
 
     .prestamo .col-4{
         width: 100%;
+    }
+
+    .prestamo .col-sm-8{
+        padding-left: auto;
+        padding-top: 20px;
     }
 }

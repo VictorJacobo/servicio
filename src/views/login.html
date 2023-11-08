@@ -15,18 +15,25 @@
 
       <div class="card">
         <div class="login-c">
-          <h4>Laboratorio</h4>
-          <h5 id="text-error" class="text-muted font-weight-normal mb-4">
-            ¡Bienvenido! Ingrese a su cuenta
-          </h5>
+          <div class="head">
+            <h4>Laboratorio</h4>
+            <h5 id="text-error" class="text-muted font-weight-normal">
+              ¡Bienvenido! Ingrese a su cuenta
+            </h5>
+          </div>
           <form onsubmit="return formSubmit(event)">
             <div class="mb-3">
-              <label for="username" class="form-label">Usuario</label>
-              <input placeholder="Usuario" type="text" class="form-control" id="username" name="user">
+              <div class="input-group">
+                <img src="./../assets/images/user.svg">
+                <input type="text" class="form-control" id="username" placeholder="Usuario">
+              </div>
+
             </div>
             <div class="mb-3">
-              <label for="contra" class="form-label">Contraseña</label>
-              <input placeholder="Contraseña" type="password" class="form-control" id="contra" name="pass">
+              <div class="input-group">
+                <div class="input-group-text">@</div>
+                <input type="text" class="form-control" id="contra" placeholder="Contraseña">
+              </div>
             </div>
             <div class="mb-3">
               <button type="submit" class="btn btn-primary" id="btnLogin">Enviar</button>
