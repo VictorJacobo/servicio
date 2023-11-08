@@ -248,6 +248,32 @@ electronIpcMain.handle('getConfiguracion', (event) =>{
     return configData;
 });
 
+electronIpcMain.handle('leerQR', (event)=>{
+    const { ipcRenderer } = require('electron');
+  const { spawn } = require('child_process');
+
+  const pythonProcess = spawn('python', ['./src/QR.py']); 
+
+   pythonProcess.stdout.on('data', (data) => {
+    // Procesar los datos que devuelve el proceso Python
+    const codigoQR = data.toString().trim();
+    
+    // Hacer algo con el código QR obtenido, como mostrarlo en la interfaz
+    console.log(`Código QR detectado: ${codigoQR}`);
+     console.log("Si entre")
+     return codigoQR;
+   });
+
+  pythonProcess.stderr.on('data', (data) => {
+    // Manejar errores si los hay
+    console.error(data.toString());
+  });
+
+  pythonProcess.on('close', (code) => {
+    console.log(`Proceso Python cerrado con código ${code}`);
+  });
+})
+
 // Función que envuelve la consulta a la base de datos en una promesa.
 function queryAsync(sql, values) {
     return new Promise((resolve, reject) => {
@@ -276,3 +302,5 @@ electronIpcMain.on('logout', (event) => {
     loginWindow.show();
     window.close();
 });
+
+
