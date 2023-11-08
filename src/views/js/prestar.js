@@ -6,6 +6,7 @@ let apellido = document.querySelector('#apelli');
 let correo = document.querySelector('#corre');
 let carrera = document.querySelector('#carre');
 
+
 //Atributos del equipo formulario
 let equipo = document.querySelector('#product');
 let id = document.querySelector('#ide');
@@ -16,6 +17,9 @@ let tipo = document.querySelector('#tip');
 //Boton enviar y boton limpiar id's
 let btnEnviar = document.querySelector('#btnEnviar');
 let btnLimpiar = document.querySelector('#btnLimpiar');
+
+//codigos
+let codigo=document.querySelector('#product');
 
 //Submit del alumno
 const formSubmitM = (event) => {
@@ -164,4 +168,31 @@ const verifica = () => {
     } else {
         btnEnviar.disabled = true;
     }
+}
+function leerCodigoQR() {
+    window.ipcRender.invoke('leerQR').then((result) => {
+        const data = { equipo: result};
+        window.ipcRender.invoke('getEquipoData', data).then((result) => {
+            if (result !== null){
+                console.log(result)
+                id.value = result.id;
+                marca.value = result.marca;
+                modelo.value = result.modelo;
+                tipo.value = result.tipo;
+                verifica();
+                if (btnLimpiar.disabled == true) {
+                    btnLimpiar.disabled = false;
+                }
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'No existe un equipo con este código',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
+            }
+            
+        });
+    })
+
 }
