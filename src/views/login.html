@@ -21,19 +21,20 @@
               ¡Bienvenido! Ingrese a su cuenta
             </h5>
           </div>
-          <form onsubmit="return formSubmit(event)">
-            <div class="mb-3">
-              <div class="input-group">
-                <img src="./../assets/images/user.svg">
-                <input type="text" class="form-control" id="username" placeholder="Usuario">
+          
+          <form class="text-center" onsubmit="return formSubmit(event)">
+            <div class="input-group mb-3">
+              <div class="input-group-append">
+                <div class="input-group-text"><img src="./../assets/images/user.svg"></div>
               </div>
-
+              <input type="text" name="user" class="form-control" placeholder="Usuario" id="username">
             </div>
-            <div class="mb-3">
-              <div class="input-group">
-                <div class="input-group-text">@</div>
-                <input type="text" class="form-control" id="contra" placeholder="Contraseña">
+            <div class="input-group mb-3">
+              <div class="input-group-append">
+                <div class="input-group-text"><img src="./../assets/images/lock-fill.svg"></div>
               </div>
+              <input type="password" class="form-control" id="contra" placeholder="Contraseña">
+              <img src="./../assets/images/eye.svg" id="eye" class="eyes" onclick="VerPass()">
             </div>
             <div class="mb-3">
               <button type="submit" class="btn btn-primary" id="btnLogin">Enviar</button>

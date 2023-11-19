@@ -17,7 +17,6 @@ def read_qr_code():
 
         for obj in decoded_objects:
             data = obj.data.decode('utf-8')
-            print(f"Código QR encontrado: {data}")
             qr_detected = True  # Detener la detección
 
         # Mostrar la imagen con los códigos QR resaltados

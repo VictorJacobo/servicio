@@ -2,30 +2,20 @@ let btnLogin = document.querySelector('#btnLogin');
 let error = document.querySelector('#text-error');
 let usuario = document.querySelector('#username');
 let password = document.querySelector('#contra');
-// btnLogin.addEventListener('click', () => {
-//     validateInputs();
-// });
 
-// const validateInputs = () => {
-//     if (usuario.value == '') {
-//         error.innerHTML = 'Ingresá tu nombre de usuario.';
-//         error.classList.remove('text-muted');
-//         error.classList.add('text-danger');
-//     } else if (password.value == '') {
-//         error.innerHTML = 'Ingresá tú contraseña.';
-//         error.classList.remove('text-muted');
-//         error.classList.add('text-danger');
-//     }
-// }
+//Ojo que muestra y oculta contraseña
+let openEye =  document.querySelector('#eye');
+let visible = false;
+
 
 const formSubmit = (event) => {
     event.preventDefault();
     if (usuario.value == '') {
-        error.innerHTML = 'Ingresá tu nombre de usuario.';
+        error.innerHTML = 'Ingresa tu nombre de usuario.';
         error.classList.remove('text-muted');
         error.classList.add('text-danger');
     } else if (password.value == '') {
-        error.innerHTML = 'Ingresá tú contraseña.';
+        error.innerHTML = 'Ingresa tu contraseña.';
         error.classList.remove('text-muted');
         error.classList.add('text-danger');
     } else {
@@ -53,3 +43,21 @@ const errorLogin = () => {
     password.value = '';
     usuario.focus();
 }
+
+// Función para alternar la visibilidad de la contraseña
+function VerPass() {
+    // Cambia la visibilidad de la contraseña
+    if (visible) {
+        password.type = 'password';
+        visible = false;
+        // Cambia la imagen del ojo a cerrado
+        openEye.src = "./../assets/images/eye.svg";
+    } else {
+        password.type = 'text';
+        visible = true;
+        // Cambia la imagen del ojo a abierto
+        openEye.src = "./../assets/images/eye-slash.svg"; // Reemplaza con la ruta correcta de la imagen abierta
+    }
+}
+
+

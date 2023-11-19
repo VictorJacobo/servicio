@@ -7,6 +7,7 @@ let aux = new Store();
 const path = require('path');
 const db = require('./connection');
 const fs = require('fs');
+const { spawn } = require('child_process');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -144,12 +145,12 @@ electronIpcMain.on('configuracion', (event, data) => {
 
     // Escribir los datos en el archivo JSON
     fs.writeFile(rutaArchivo, datosJSON, 'utf-8', (err) => {
-    if (err) {
-      console.error('Error al escribir en el archivo JSON:', err);
-    } else {
-      console.log('Datos guardados correctamente en el archivo JSON.');
-    }
-  });
+        if (err) {
+            console.error('Error al escribir en el archivo JSON:', err);
+        } else {
+            console.log('Datos guardados correctamente en el archivo JSON.');
+        }
+    });
 
 });
 
@@ -196,7 +197,6 @@ electronIpcMain.handle('getEquipoData', async (event, data) => {
 
     try {
         const results = await queryAsync(sql, [equipo]);
-        
         if (results.length > 0) {
             const auxE = {
                 id: results[0].idEquipo,
@@ -208,6 +208,7 @@ electronIpcMain.handle('getEquipoData', async (event, data) => {
         } else {
             // Puedes manejar el caso en que no se encuentren resultados.
             console.log("No se encontraron resultados.");
+            console.log(results.length)
             return null;
         }
     } catch (error) {
@@ -231,53 +232,51 @@ electronIpcMain.handle('registraPrestamo', async (event, data) => {
         return false;
     }
 });
-electronIpcMain.handle('getConfiguracion', (event) =>{
+electronIpcMain.handle('getConfiguracion', (event) => {
 
     const configFilePath = path.join(__dirname, 'configuracion.json'); // Ruta al archivo JSON
 
     let configData;
 
     try {
-    const data = fs.readFileSync(configFilePath, 'utf-8');
-    configData = JSON.parse(data);
+        const data = fs.readFileSync(configFilePath, 'utf-8');
+        configData = JSON.parse(data);
     } catch (error) {
-    console.error('Error al leer el archivo de configuración:', error);
-    process.exit(1); // Puedes manejar el error de acuerdo a tus necesidades
+        console.error('Error al leer el archivo de configuración:', error);
+        process.exit(1); // Puedes manejar el error de acuerdo a tus necesidades
     }
 
     return configData;
 });
 
-electronIpcMain.handle('leerQR', (event)=>{
-    const { ipcRenderer } = require('electron');
-  const { spawn } = require('child_process');
+electronIpcMain.handle('leerQR', (event) => {
+    return new Promise((resolve, reject) => {
+        const pythonProcess = spawn('python', ['./src/QR.py']);
+        console.log("Hola, entré a leer QR");
 
-  const pythonProcess = spawn('python', ['./src/QR.py']); 
+        pythonProcess.stdout.on('data', (data) => {
+            // Procesar los datos que devuelve el proceso Python
+            const codigoQR = data.toString().trim();
 
-   pythonProcess.stdout.on('data', (data) => {
-    // Procesar los datos que devuelve el proceso Python
-    const codigoQR = data.toString().trim();
-    
-    // Hacer algo con el código QR obtenido, como mostrarlo en la interfaz
-    console.log(`Código QR detectado: ${codigoQR}`);
-     console.log("Si entre")
-     return codigoQR;
-   });
+            // Resolver la promesa con el código QR
+            resolve(codigoQR);
+        });
 
-  pythonProcess.stderr.on('data', (data) => {
-    // Manejar errores si los hay
-    console.error(data.toString());
-  });
+        pythonProcess.stderr.on('data', (data) => {
+            // Manejar errores si los hay
+            console.error(data.toString());
 
-  pythonProcess.on('close', (code) => {
-    console.log(`Proceso Python cerrado con código ${code}`);
-  });
-})
+            // Rechazar la promesa en caso de error
+            reject(data.toString());
+        });
+    });
+});
 
 // Función que envuelve la consulta a la base de datos en una promesa.
 function queryAsync(sql, values) {
     return new Promise((resolve, reject) => {
         db.query(sql, values, (error, results, fields) => {
+
             if (error) {
                 reject(error);
             } else {
@@ -289,7 +288,7 @@ function queryAsync(sql, values) {
 
 //Obtener informacion del usuario
 electronIpcMain.handle('getUserData', (event) => {
-    const data = { user: store.get('user'), img: store.get('img')};
+    const data = { user: store.get('user'), img: store.get('img') };
     return data;
 });
 

@@ -19,7 +19,7 @@ let btnEnviar = document.querySelector('#btnEnviar');
 let btnLimpiar = document.querySelector('#btnLimpiar');
 
 //codigos
-let codigo=document.querySelector('#product');
+let codigo = document.querySelector('#product');
 
 //Submit del alumno
 const formSubmitM = (event) => {
@@ -56,10 +56,10 @@ const EnviarPrestamo = (event) => {
 }
 
 const consultaMatri = () => {
-    const data = { matricula: matri.value};
-    window.ipcRender.invoke('getDatos',data).then((result) => {
-        if (result != null){
-            if(result.lista = '0'){
+    const data = { matricula: matri.value };
+    window.ipcRender.invoke('getDatos', data).then((result) => {
+        if (result != null) {
+            if (result.lista = '0') {
                 console.log(result)
                 Amatri.value = result.matricula;
                 nombre.value = result.nombre;
@@ -90,10 +90,10 @@ const consultaMatri = () => {
 }
 
 const consultaEquipo = () => {
-    const data = { equipo: equipo.value};
+    const data = { equipo: equipo.value };
     //window.ipcRender.send('consultaE', data);
     window.ipcRender.invoke('getEquipoData', data).then((result) => {
-        if (result !== null){
+        if (result !== null) {
             console.log(result)
             id.value = result.id;
             marca.value = result.marca;
@@ -111,14 +111,14 @@ const consultaEquipo = () => {
                 confirmButtonText: 'Ok'
             })
         }
-        
+
     });
 }
 
 const Envia = () => {
-    const data = {Amatricula: Amatri.value, equipo: equipo.value, fecha: new Date().toISOString() }
+    const data = { Amatricula: Amatri.value, equipo: equipo.value, fecha: new Date().toISOString() }
     window.ipcRender.invoke('registraPrestamo', data).then((result) => {
-        if (result == true){
+        if (result == true) {
             Swal.fire({
                 title: 'Exito',
                 text: 'El prestamo se ha registrado exitosamente',
@@ -169,6 +169,8 @@ const verifica = () => {
         btnEnviar.disabled = true;
     }
 }
+
+
 function leerCodigoQR() {
     window.ipcRender.invoke('leerQR').then((result) => {
         const data = { equipo: result};
@@ -191,8 +193,53 @@ function leerCodigoQR() {
                     confirmButtonText: 'Ok'
                 })
             }
-            
+
         });
     })
 
 }
+
+
+// async function leerCodigoQR() {
+//     try {
+//         // Obtener el resultado de leerQR
+//         const resultLeerQR = await window.ipcRender.invoke('leerQR');
+//         // Verificar que resultLeerQR no sea null antes de continuar
+//         if (resultLeerQR !== null) {
+//             // Procesar el resultado de leerQR y obtener los datos necesarios
+//             const data = { equipo: resultLeerQR };
+//             console.log("Resultado QR: " + data.equipo)
+//             window.ipcRender.invoke('getEquipoData', data).then((result) => {
+//                 if (result !== null) {
+//                     console.log(result)
+//                     id.value = result.id;
+//                     marca.value = result.marca;
+//                     modelo.value = result.modelo;
+//                     tipo.value = result.tipo;
+//                     verifica();
+//                     if (btnLimpiar.disabled == true) {
+//                         btnLimpiar.disabled = false;
+//                     }
+//                 } else {
+//                     Swal.fire({
+//                         title: 'Error!',
+//                         text: 'No existe un equipo con este código',
+//                         icon: 'error',
+//                         confirmButtonText: 'Ok'
+//                     })
+//                 }
+
+//             });
+//         } else {
+//             Swal.fire({
+//                 title: 'Error!',
+//                 text: 'No se pudo leer el código QR',
+//                 icon: 'error',
+//                 confirmButtonText: 'Ok'
+//             });
+//         }
+//     } catch (error) {
+//         // Manejar errores de ambas invocaciones si es necesario
+//         console.error(error);
+//     }
+// }
