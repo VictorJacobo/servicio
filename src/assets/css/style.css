@@ -44,10 +44,11 @@ body {
 
 
 
-.eyes {
+#eye {
     position: absolute;
     right: 0;
-    padding: 1.5vh 20px;
+    top: 28%;
+    padding-right:  20px;
     z-index: 5;
     filter: invert(40%) grayscale(100%);
 }
