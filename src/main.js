@@ -302,4 +302,99 @@ electronIpcMain.on('logout', (event) => {
     window.close();
 });
 
+var express = require('express');
+var router = express.Router();
 
+var database = require('./connection');
+
+/* GET home page. */
+router.get('/', function (req, res, next) {
+    res.render('equipos.html', { title: 'Prestamo' });
+});
+
+router.get('/get_data', function (request, response, next) {
+
+    var draw = request.query.draw;
+    var start = request.query.start;
+    var length = request.query.length;
+    var order_data = request.query.order;
+
+    if (typeof order_data == 'undefined') {
+        var column_name = 'equipo.idEquipo';
+        var column_sort_order = 'desc';
+    } else {
+        var column_index = request.query.order[0]['column'];
+        var column_name = request.query.columns[column_index]['data'];
+        var column_sort_order = request.query.order[0]['dir'];
+    }
+
+    // search data
+    var search_value = request.query.search['value'];
+    var search_query = `
+        AND (idEquipo LIKE '%${search_value}%')
+    `;
+
+    // Total number of records without filtering
+    database.query("SELECT COUNT(*) AS Total FROM equipo", function (error, data) {
+        if (error) {
+            console.error("Error en la consulta COUNT:", error);
+            return response.status(500).json({ error: "Error en la consulta COUNT" });
+        }
+
+        var total_records = (data && data.length > 0) ? data[0].Total : 0;
+
+        // Total number of records with filtering
+        database.query(`SELECT COUNT(*) AS Total FROM equipo WHERE 1 ${search_query}`, function (error, data) {
+            if (error) {
+                console.error("Error en la consulta COUNT con filtro:", error);
+                return response.status(500).json({ error: "Error en la consulta COUNT con filtro" });
+            }
+
+            var total_records_with_filter = (data && data.length > 0) ? data[0].Total : 0;
+
+            var query = `
+                SELECT * FROM equipo
+                WHERE 1 ${search_query} 
+                ORDER BY ${column_name} ${column_sort_order} 
+                LIMIT ${start}, ${length}
+            `;
+
+            // Log para imprimir la consulta SQL
+            console.log("SQL Query:", query);
+
+            var data_arr = [];
+
+            database.query(query, function (error, data) {
+                if (error) {
+                    console.error("Error en la consulta SELECT:", error);
+                    return response.status(500).json({ error: "Error en la consulta SELECT" });
+                }
+
+                console.log("Data from the database:", data);
+
+                data.forEach(function (row) {
+                    data_arr.push({
+                        'idEquipo': row.idEquipo,
+                        'Marca': row.Marca,
+                        'Modelo': row.Modelo,
+                        'N_serie': row.N_serie,
+                        'Tipo': row.Tipo,
+                        'Fecha_UP': row.Fecha_UP,
+                        'Descripcion': row.Descripcion
+                    });
+                });
+
+                var output = {
+                    'draw': draw,
+                    'iTotalRecords': total_records,
+                    'iTotalDisplayRecords': total_records_with_filter,
+                    'aaData': data_arr
+                };
+
+                response.json(output);
+            });
+        });
+    });
+});
+
+module.exports = router;

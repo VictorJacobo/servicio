@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Registro servicio</title>
   <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -66,10 +67,64 @@
       <a class="btn btn-primary" href="./usuarios.html" role="button">Usuarios</a>
     </div>
   </div>
-  <script src="./../assets/vendors/boot/js/bootstrap.js"></script>
-  <script src="./../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
-  <script src="./js/menu.js"></script>
-  <script src="./js/login-user.js"></script>
-</body>
 
-</html>
+  <div class="container">
+    <h1 class="text-center text-white mt-3 mb-3">Concentrado de prestamos</h1>
+
+      <div class="card">
+          <div class="card-header">Datos del préstamo</div>
+          <div class="card-body">
+              <div class="table-responsive">
+                  <table id="prestamo_data" class="table table-bordered">
+                      <thead>
+                          <tr>
+                              <th>idEquipo</th>
+                              <th>Marca</th>
+                              <th>Modelo</th>
+                              <th>Número de Serie</th>
+                              <th>Tipo</th>
+                              <th>Fecha de Préstamo</th>
+                              <th>Descripción</th>
+                          </tr>
+                      </thead>
+                      <tbody></tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- jQuery primero -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- Otros scripts después -->
+<script src="./../assets/vendors/boot/js/bootstrap.js"></script>
+<script src="./../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="./js/menu.js"></script>
+<script src="./js/login-user.js"></script>
+
+<!-- Tu script DataTable después de cargar jQuery -->
+<script>
+    $(document).ready(function(){
+        var dataTable = $('#prestamo_data').DataTable({
+            'processing' : true,
+            'serverSide' : true,
+            'serverMethod' : 'get',
+            'ajax' : {
+                'url' : '/get_data'
+            },
+            'aaSorting' : [],
+            'columns' : [
+                { data : 'idEquipo' },
+                { data : 'Marca' },
+                { data : 'Modelo' },
+                { data : 'N_serie' },
+                { data : 'Tipo' },
+                { data : 'Fecha_UP' },
+                { data : 'Descripcion' }
+            ]
+        });
+    });
+</script>

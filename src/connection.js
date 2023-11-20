@@ -15,7 +15,6 @@ try {
 
 const dbIP = configData.Ipserver;
 
-
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
@@ -23,7 +22,7 @@ const connection = mysql.createConnection({
     user: 'root',
     password: '',
     database: 'lab',
-    port: '3307'
+    port: '3306'
 });
 
 connection.connect(function (err) {
