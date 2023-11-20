@@ -23,7 +23,8 @@ const ipc = {
             'getEquipoData',
             'registraPrestamo',
             'getConfiguracion',
-            'leerQR'/*
+            'leerQR',
+            'getTablaEquipo'/*
             'getBooks',
             'getBook',
             'confirmAddBook',
