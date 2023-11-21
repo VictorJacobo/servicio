@@ -10,20 +10,12 @@ body {
    background-color: #dee8ef; 
  }
 
-.titleTableS {
-    font-size: 24px; /* Cambia el tamaño del texto según tus necesidades */
-    font-weight: bold; /* Puedes cambiar el peso del texto (por ejemplo, bold, normal, etc.) */
-    text-align: center;
-    color:#0f0c29; /* Cambia el color del texto según tus necesidades */
-    background-color: #dee8ef;
-    padding: 20px; /* Ajusta el relleno del encabezado según tus necesidades */
-}
-#equipos_data th,
-#equipos_data td {
+tabla th,
+tabla td {
     border-width: 1.2px; /* Puedes ajustar el grosor del borde aquí */
     border-color: #0f0c29; /* Puedes ajustar el color del borde aquí */
 }
-#equipos_data thead th {
+tabla thead th {
     background-color:#2471A3;
     color: #fff; /* Cambia esto al color del texto que desees */
 }
@@ -31,11 +23,11 @@ body {
     margin-top: 50px; /* Puedes ajustar el valor según tus necesidades */
 }
 
-#equipos_data_filter {
+tabla_filter {
     margin-top: 10px;
     text-align: center !important;
 }
-#equipos_data_length {
+tabla_length {
     margin-top: 10px;
     text-align: center !important;
 }
