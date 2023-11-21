@@ -4,13 +4,45 @@
 body {
     background-color: #f9fafb;
 }
+/*======================*/
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #dee8ef; 
+ }
 
+.titleTableS {
+    font-size: 24px; /* Cambia el tamaño del texto según tus necesidades */
+    font-weight: bold; /* Puedes cambiar el peso del texto (por ejemplo, bold, normal, etc.) */
+    text-align: center;
+    color:#0f0c29; /* Cambia el color del texto según tus necesidades */
+    background-color: #dee8ef;
+    padding: 20px; /* Ajusta el relleno del encabezado según tus necesidades */
+}
+#equipos_data th,
+#equipos_data td {
+    border-width: 1.2px; /* Puedes ajustar el grosor del borde aquí */
+    border-color: #0f0c29; /* Puedes ajustar el color del borde aquí */
+}
+#equipos_data thead th {
+    background-color:#2471A3;
+    color: #fff; /* Cambia esto al color del texto que desees */
+}
+.container {
+    margin-top: 50px; /* Puedes ajustar el valor según tus necesidades */
+}
+
+#equipos_data_filter {
+    margin-top: 10px;
+    text-align: center !important;
+}
+#equipos_data_length {
+    margin-top: 10px;
+    text-align: center !important;
+}
+/*======================*/
 .btn-primary {
     background-color: #254ec9;
 }
-
-
-
 
 .full {
     display: flex;
@@ -18,10 +50,10 @@ body {
     justify-content: center;
     height: 100vh;
     padding: 0 30vw;
-    background: rgb(21, 41, 124);
-    background: -moz-linear-gradient(0deg, rgba(21, 41, 124, 1) 45%, rgba(38, 132, 181, 1) 83%);
-    background: -webkit-linear-gradient(0deg, rgba(21, 41, 124, 1) 45%, rgba(38, 132, 181, 1) 83%);
-    background: linear-gradient(0deg, rgba(21, 41, 124, 1) 45%, rgba(38, 132, 181, 1) 83%);
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#15297c", endColorstr="#2684b5", GradientType=1);
 }
 
@@ -98,7 +130,7 @@ body {
 
 
 .card .row {
-    background-color: #efefec;
+    background-color: #ffffff;
     border-radius: 0 0 5px 5px;
     margin: 0;
     padding: 10px 0;
@@ -273,6 +305,10 @@ body {
     font-weight: 700;
 }
 
+.centered-header{
+    text-align: center !important;
+    vertical-align: middle !important;
+}
 
 @media (max-width:720px) {
     .full {

@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Registro servicio</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
@@ -69,20 +69,18 @@
   </div>
 
   <div class="container">
-    <h1 class="text-center text-white mt-3 mb-3">Concentrado de prestamos</h1>
-
     <div class="card">
-      <div class="card-header">Equipos</div>
+
       <div class="card-body">
         <div class="table-responsive">
-          <table id="equipos_data" class="table table-bordered">
+          <table id="equipos_data" class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th>idEquipo</th>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>Número de Serie</th>
-                <th>Tipo</th>
+                <th class = "centered-header">idEquipo</th>
+                <th class = "centered-header">Marca</th>
+                <th class = "centered-header">Modelo</th>
+                <th class = "centered-header">Número de Serie</th>
+                <th class = "centered-header">Tipo</th>
               </tr>
             </thead>
             <tbody id="tableBody_users"></tbody>

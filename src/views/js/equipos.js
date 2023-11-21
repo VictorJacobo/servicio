@@ -5,6 +5,10 @@ let dataTableIsInitialized = false;
 const dataTableOptions = {
     pageLength: 5,
     destroy: true,
+    stripeClasses: [], // Desactiva las clases de rayas de DataTable
+    columnDefs: [
+        { className: "centered-header", targets: "_all" } // Aplica la clase a todas las columnas
+    ],
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
         zeroRecords: "Ningún usuario encontrado",
