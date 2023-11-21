@@ -1,16 +1,9 @@
 let dataTable;
 let dataTableIsInitialized = false;
 
+
 const dataTableOptions = {
-    //scrollX: "2000px",
-    lengthMenu: [5, 10, 15, 20, 100, 200, 500],
-    columnDefs: [
-        { className: "centered", targets: [0, 1, 2, 3, 4, 5, 6] },
-        { orderable: false, targets: [5, 6] },
-        { searchable: false, targets: [1] }
-        //{ width: "50%", targets: [0] }
-    ],
-    pageLength: 3,
+    pageLength: 5,
     destroy: true,
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
@@ -30,23 +23,24 @@ const dataTableOptions = {
 };
 
 const initDataTable = async () => {
+    await listUsers();
     if (dataTableIsInitialized) {
         dataTable.destroy();
     }
 
-    await listUsers();
+    
 
-    dataTable = $("#equipos_data").DataTable({});
+    dataTable = $("#equipos_data").DataTable(dataTableOptions);
 
     dataTableIsInitialized = true;
 };
 
 const listUsers = async () => {
     try {
-        window.ipcRender.invoke('getTablaEquipo').then((result) => {
-            console.log("Equipos: "+result)
+        const result = await window.ipcRender.invoke('getTablaEquipo');
+            //console.log("Equipos: "+result)
             let content = ``;
-            result.forEach((equipo, index) => {
+            result.forEach((equipo,index) => {
                 content += `
                 <tr>
                     <td>${equipo.idEquipo}</td>
@@ -56,8 +50,8 @@ const listUsers = async () => {
                     <td>${equipo.Tipo}</td>
                 </tr>`;
             });
-            tableBody_users.innerHTML = content;
-        });
+            $('#tableBody_users').html(content)
+ 
 
     } catch (ex) {
         alert(ex);
