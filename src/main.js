@@ -114,7 +114,7 @@ electronIpcMain.on('login', (event, data) => {
 
 function validateLogin(data) {
     const { usuario, password } = data;
-    const sql = 'SELECT * FROM aministradores WHERE Matricula_Admin=? AND Contraseña=?';s
+    const sql = 'SELECT * FROM aministradores WHERE Matricula_Admin=? AND Contraseña=?';
 
     db.query(sql, [usuario, password], (error, results, fields) => {
         if (error) {
