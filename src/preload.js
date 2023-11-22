@@ -28,7 +28,8 @@ const ipc = {
             'getTablaUsuario',
             'getTablaUsuarioLista',
             'registraEquipo',
-            'eliminaEquipo'/*
+            'eliminaEquipo',
+            'editaEquipoData'/*
             'getBooks',
             'getBook',
             'confirmAddBook',

@@ -192,17 +192,17 @@ electronIpcMain.handle('getDatos', async (event, data) => {
 
 //Aparto donde se consulta informacion d eun equipo
 electronIpcMain.handle('getEquipoData', async (event, data) => {
-    const { equipo } = data;
     const sql = 'SELECT * FROM equipo WHERE idEquipo=?';
 
     try {
-        const results = await queryAsync(sql, [equipo]);
+        const results = await queryAsync(sql, [data]);
         if (results.length > 0) {
             const auxE = {
                 id: results[0].idEquipo,
                 marca: results[0].Marca,
                 modelo: results[0].Modelo,
-                tipo: results[0].Tipo
+                tipo: results[0].Tipo,
+                serie: results[0].N_serie
             };
             return auxE;
         } else {
@@ -217,6 +217,7 @@ electronIpcMain.handle('getEquipoData', async (event, data) => {
         return null;
     }
 });
+
 
 //Aparto donde se consulta informacion d eun equipo
 electronIpcMain.handle('registraPrestamo', async (event, data) => {
@@ -386,6 +387,19 @@ electronIpcMain.handle('eliminaEquipo', async (event,data) =>{
         return true;
     } catch (error) {
         console.error("Error al eliminar equipo:", error);
+        return false;
+    }
+});
+
+//Apartado donde se edita un equipo
+electronIpcMain.handle('editaEquipoData', async (event, data) => {
+    const sql = 'UPDATE equipo SET idEquipo = ?, Marca = ?, Modelo = ?, N_serie = ?, Tipo = ? WHERE idEquipo = ?;';
+    try {
+        await queryAsync(sql, [data.idEquipo, data.marca, data.modelo, data.nSerie, data.tipo, data.id]);
+        console.log("Editar equipo exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al editar equipo:", error);
         return false;
     }
 });
