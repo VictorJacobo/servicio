@@ -23,11 +23,11 @@ body {
     margin-top: 50px; /* Puedes ajustar el valor según tus necesidades */
 }
 
-.tabla_filter {
+tabla_filter {
     margin-top: 10px;
     text-align: center !important;
 }
-.tabla_length {
+tabla_length {
     margin-top: 10px;
     text-align: center !important;
 }
