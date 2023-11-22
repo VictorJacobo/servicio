@@ -7,7 +7,9 @@ const ipc = {
             'login',
             'logout',
             'configuracion',
-            'openConf'/*,
+            'openConf',
+            'openUsers',
+            'openRegistra'/*,
             'consulta',
             'consultaE'
             'invitado',

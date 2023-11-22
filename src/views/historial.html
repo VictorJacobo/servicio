@@ -29,6 +29,11 @@
                                     <img src="./../assets/images/user.png" id="profileUser2">
                                     <h6 id="profileName">Nombre generico</h6>
                                     <hr>
+                                    <a href="#" class="menu-link" id="btnUsuarios">
+                                        <img src="./../assets/images/user.svg">
+                                        <p>Administra usuarios</p>
+                                        <span>></span>
+                                    </a>
                                     <a href="#" class="menu-link" id="btnConf">
                                         <img src="./../assets/images/settings.svg">
                                         <p>Configuración</p>
@@ -58,8 +63,7 @@
             <a class="btn btn-primary" href="./equipos.html" role="button">Equipos</a>
         </div>
         <div class="col-2">
-            <a class="btn btn-primary disabled" href="./historial.html" role="button"
-                aria-disabled="true">Historial</a>
+            <a class="btn btn-primary disabled" href="./historial.html" role="button" aria-disabled="true">Historial</a>
         </div>
         <div class="col-2">
             <a class="btn btn-primary" href="./lista.html" role="button">Lista negra</a>
@@ -70,40 +74,40 @@
     </div>
     <div class="container">
         <div class="card">
-    
-          <div class="card-body">
-            <div class="table-responsive">
-              <table id="historial_data" class="table table-bordered table-hover tabla">
-                <thead>
-                  <tr>
-                    <th class = "centered-header">Matricula Alumno</th>
-                    <th class = "centered-header">Matricula Administrador</th>
-                    <th class = "centered-header">ID Equipo</th>
-                    <th class = "centered-header">Fecha de prestamo</th>
-                    <th class = "centered-header">Fecha de devolución</th>
-                    <th class = "centered-header">Accion</th>
-                  </tr>
-                </thead>
-                <tbody id="tableBody_historial"></tbody>
-              </table>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="historial_data" class="table table-bordered table-hover tabla">
+                        <thead>
+                            <tr>
+                                <th class="centered-header">Matricula Alumno</th>
+                                <th class="centered-header">Matricula Administrador</th>
+                                <th class="centered-header">ID Equipo</th>
+                                <th class="centered-header">Fecha de prestamo</th>
+                                <th class="centered-header">Fecha de devolución</th>
+                                <th class="centered-header">Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody_historial"></tbody>
+                    </table>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    
-      <!-- jQuery primero -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-      <!-- DataTable -->
-      <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-      <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-    
-      <!-- Otros scripts después -->
-      <script src="./../assets/vendors/boot/js/bootstrap.js"></script>
-      <script src="./../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
-      <script src="./js/menu.js"></script>
-      <script src="./js/login-user.js"></script>
-      <script src="./js/historial.js"></script>
-    
-    </body>
-    
-    </html>
+    </div>
+
+    <!-- jQuery primero -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- DataTable -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- Otros scripts después -->
+    <script src="./../assets/vendors/boot/js/bootstrap.js"></script>
+    <script src="./../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="./js/menu.js"></script>
+    <script src="./js/login-user.js"></script>
+    <script src="./js/historial.js"></script>
+
+</body>
+
+</html>

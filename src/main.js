@@ -18,6 +18,7 @@ if (require('electron-squirrel-startup')) {
 let window;
 let loginWindow;
 let ConfiWindow;
+let userWindow;
 
 const createWindowDashboard = () => {
     // Create the browser window.
@@ -36,8 +37,46 @@ const createWindowDashboard = () => {
 
     // and load the index.html of the app.
     window.loadFile(path.join(__dirname, 'views/prestamo.html'));
+};
 
-    window.webContents.openDevTools();
+const createUsuarios = () => {
+    // Create the browser window.
+    window = new electronBrowserWindow({
+        //icon: __dirname + '/assets/images/favicon.ico',
+        width: 800,
+        height: 500,
+        autoHideMenuBar: true,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: true,
+            //devTools: false,
+            preload: path.join(__dirname, 'preload.js')
+        }
+    });
+
+    // and load the index.html of the app.
+    window.loadFile(path.join(__dirname, 'views/usuarios.html'));
+
+};
+
+const registra = () => {
+    // Create the browser window.
+    window = new electronBrowserWindow({
+        //icon: __dirname + '/assets/images/favicon.ico',
+        width: 800,
+        height: 500,
+        autoHideMenuBar: true,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: true,
+            //devTools: false,
+            preload: path.join(__dirname, 'preload.js')
+        }
+    });
+
+    // and load the index.html of the app.
+    window.loadFile(path.join(__dirname, 'views/registro.html'));
+
 };
 
 const createWindow = () => {
@@ -156,7 +195,18 @@ electronIpcMain.on('configuracion', (event, data) => {
 
 electronIpcMain.on('openConf', (event) => {
     createConf();
-    ConfiWindow.show();
+    //ConfiWindow.show();
+});
+
+electronIpcMain.on('openUsers', (event) => {
+    createUsuarios();
+    //userWindow.show();
+});
+
+electronIpcMain.on('openRegistra', (event) => {
+    registra();
+    console.log("Abrir registra")
+    //userWindow.show();
 });
 
 //Apartado donde se consulta la informacion de un alumno en base a su matricula

@@ -26,3 +26,7 @@ muestra.addEventListener("click", function () {
 document.getElementById("btnConf").addEventListener("click", function () {
     window.ipcRender.send('openConf');
 });
+
+document.getElementById("btnUsuarios").addEventListener("click", function () {
+    window.ipcRender.send('openUsers');
+});

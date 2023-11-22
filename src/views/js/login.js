@@ -60,4 +60,8 @@ function VerPass() {
     }
 }
 
+document.getElementById("btnRegistra").addEventListener("click", function () {
+    window.ipcRender.send('openRegistra');
+});
+
 
