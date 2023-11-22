@@ -67,6 +67,18 @@ tabla_length {
 .centered-header.sorting_1 {
     font-weight: bold;
 }
+
+.tBotones {
+    padding: 0 !important;
+}
+.tBotones .row{
+    padding: 0 !important;
+}
+
+.tBotones .btn{
+    
+}
+
 /*======================*/
 .btn-primary {
     background-color: #254ec9;

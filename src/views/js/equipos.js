@@ -63,6 +63,49 @@ const listUsers = async () => {
                     <td>${equipo.Modelo}</td>
                     <td>${equipo.N_serie}</td>
                     <td>${equipo.Tipo}</td>
+                    <td class="tBotones">
+                        <div class="row">
+                            <div class="col-6">
+                                <button class="btn btn-success btn-sm" onclick=" ">Editar</button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-danger btn-sm" onclick="eliminarEquipo('${equipo.idEquipo}')">Eliminar</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>`;
+            });
+            $('#tableBody_users').html(content)
+ 
+
+    } catch (ex) {
+        alert(ex);
+    }
+};
+
+
+const listUsers2 = async (id) => {
+    try {
+        const result = await window.ipcRender.invoke('getTablaEquipo');
+            //console.log("Equipos: "+result)
+            let content = ``;
+            content += `
+            <tr>
+                    <td><input placeholder="idEquipo" type="text" class="form-control form-control-sm" id="nEquipo"></td>
+                    <td><input placeholder="Marca" type="text" class="form-control form-control-sm" id="nMarca"></td>
+                    <td><input placeholder="Modelo" type="text" class="form-control form-control-sm" id="nModelo"></td>
+                    <td><input placeholder="N_serie" type="text" class="form-control form-control-sm" id="nSerie"></td>
+                    <td><input placeholder="Tipo" type="text" class="form-control form-control-sm" id="nTipo"></td>
+                    <td><button type="submit" class="btn btn-primary btn-sm" onclick="AgregarEquipo(event)">Enviar</button></td>
+            </tr>`;
+            result.forEach((equipo,index) => {
+                content += `
+                <tr>
+                    <td>${equipo.idEquipo}</td>
+                    <td>${equipo.Marca}</td>
+                    <td>${equipo.Modelo}</td>
+                    <td>${equipo.N_serie}</td>
+                    <td>${equipo.Tipo}</td>
                     <td><button class="btn btn-danger" onclick="eliminarEquipo('${equipo.idEquipo}')">Eliminar</button></td>
                 </tr>`;
             });
