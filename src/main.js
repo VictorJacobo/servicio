@@ -25,7 +25,7 @@ const createWindowDashboard = () => {
         //icon: __dirname + '/assets/images/favicon.ico',
         width: 900,
         height: 600,
-        //autoHideMenuBar: true,
+        autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: true,
@@ -48,7 +48,7 @@ const createWindow = () => {
         height: 470,
         resizable: false,
         maximizable: false,
-        //autoHideMenuBar: true,
+        autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: true,
@@ -69,7 +69,7 @@ const createConf = () => {
         height: 470,
         resizable: false,
         maximizable: false,
-        //autoHideMenuBar: true,
+        autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: true,
@@ -361,6 +361,32 @@ electronIpcMain.handle('getTablaUsuarioLista', async (event) => {
         // Manejar errores de consulta.
         console.error(error);
         return null;
+    }
+});
+
+//Aparto donde se consulta informacion d eun equipo
+electronIpcMain.handle('registraEquipo', async (event, data) => {
+    const sql = 'INSERT INTO equipo (idEquipo, Marca, Modelo,N_serie,Tipo) VALUES (?, ?, ?, ?, ?)';
+
+    try {
+        await queryAsync(sql, [data.idEquipo, data.marca, data.modelo, data.nSerie, data.tipo]);
+        console.log("Registro equipo exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al registrar:", error);
+        return false;
+    }
+});
+
+electronIpcMain.handle('eliminaEquipo', async (event,data) =>{
+    const sql = 'DELETE FROM equipo WHERE idEquipo=?'
+    try {
+        await queryAsync(sql, [data]);
+        console.log("Eliminar equipo exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al eliminar equipo:", error);
+        return false;
     }
 });
 

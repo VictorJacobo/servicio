@@ -58,7 +58,7 @@ const listUsers = async () => {
  
 
     } catch (ex) {
-        alert(ex);
+        
     }
 };
 

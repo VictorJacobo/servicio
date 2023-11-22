@@ -31,6 +31,42 @@ tabla_length {
     margin-top: 10px;
     text-align: center !important;
 }
+
+.dataTables_length label {
+    font-weight: bold !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+}
+
+.dataTables_filter label {
+    font-weight: bold !important;
+    white-space: nowrap !important;
+    text-align: left !important;
+}
+
+.dataTables_length .row {
+    text-align: center ;
+    justify-content: center ;
+    align-items: center ;
+}
+
+.dataTables_filter {
+    text-align: center !important;
+    margin-top: 10px;/* Ajusta según sea necesario */
+}
+
+.dataTables_length {
+    text-align: center ;
+    margin-top: 10px;
+}
+
+.dataTables_info {
+    font-weight: bold;
+}
+
+.centered-header.sorting_1 {
+    font-weight: bold;
+}
 /*======================*/
 .btn-primary {
     background-color: #254ec9;
@@ -225,6 +261,7 @@ tabla_length {
     max-height: 0px;
     overflow: hidden;
     transition: max-height 0.5s;
+    z-index: 10;
 }
 
 .menu-wrap.open-menu {
