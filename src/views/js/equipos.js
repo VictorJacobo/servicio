@@ -8,7 +8,8 @@ const dataTableOptions = {
     stripeClasses: [], // Desactiva las clases de rayas de DataTable
     columnDefs: [
         { className: "centered-header", targets: "_all" }, // Aplica la clase a todas las columnas
-        { searcheable: false, targets: [5]}
+        { searchable: false, targets: [5]},
+        { orderable: false, targets: [5]}
     ],
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",

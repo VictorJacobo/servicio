@@ -203,6 +203,7 @@ tabla_length {
     margin: 0 10px;
     max-height: 100px;
     transition: max-height 0.5s;
+    z-index: 9;
 }
 
 

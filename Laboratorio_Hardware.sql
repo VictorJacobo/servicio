@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3307
--- Tiempo de generación: 16-10-2023 a las 11:02:52
+-- Tiempo de generación: 22-11-2023 a las 09:23:45
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -226,19 +226,21 @@ INSERT INTO `equipo` (`idEquipo`, `Marca`, `Modelo`, `N_serie`, `Tipo`, `Fecha_U
 --
 
 CREATE TABLE `prestamos` (
+  `idPresta` int(11) NOT NULL,
   `Matricula_A` int(11) NOT NULL,
   `Matricula_Admin` int(11) NOT NULL,
   `IdEquipo` varchar(45) NOT NULL,
-  `Fecha_P` datetime NOT NULL,
-  `Fecha_D` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `Fecha_P` datetime DEFAULT NULL,
+  `Fecha_D` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `prestamos`
 --
 
-INSERT INTO `prestamos` (`Matricula_A`, `Matricula_Admin`, `IdEquipo`, `Fecha_P`, `Fecha_D`) VALUES
-(201930012, 201930012, 'ELVI-001', '2023-10-16 08:59:50', '0000-00-00 00:00:00');
+INSERT INTO `prestamos` (`idPresta`, `Matricula_A`, `Matricula_Admin`, `IdEquipo`, `Fecha_P`, `Fecha_D`) VALUES
+(1, 201930012, 201930012, 'ELVI-001', '2023-11-22 08:22:31', NULL),
+(2, 201930012, 201930012, 'ELVI-001', '2023-11-22 08:23:11', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -266,8 +268,19 @@ ALTER TABLE `equipo`
 -- Indices de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  ADD PRIMARY KEY (`Matricula_A`,`Matricula_Admin`),
-  ADD KEY `IdEquipo` (`IdEquipo`);
+  ADD PRIMARY KEY (`idPresta`),
+  ADD KEY `Matricula_A` (`Matricula_A`),
+  ADD KEY `Matricula_Admin` (`Matricula_Admin`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `prestamos`
+--
+ALTER TABLE `prestamos`
+  MODIFY `idPresta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -277,7 +290,8 @@ ALTER TABLE `prestamos`
 -- Filtros para la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  ADD CONSTRAINT `prestamos_ibfk_1` FOREIGN KEY (`IdEquipo`) REFERENCES `equipo` (`idEquipo`);
+  ADD CONSTRAINT `prestamos_ibfk_1` FOREIGN KEY (`Matricula_A`) REFERENCES `alumnos` (`Matricula_A`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `prestamos_ibfk_2` FOREIGN KEY (`Matricula_Admin`) REFERENCES `aministradores` (`Matricula_Admin`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
