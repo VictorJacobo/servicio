@@ -24,7 +24,9 @@ const ipc = {
             'registraPrestamo',
             'getConfiguracion',
             'leerQR',
-            'getTablaEquipo'/*
+            'getTablaEquipo',
+            'getTablaUsuario',
+            'getTablaUsuarioLista'/*
             'getBooks',
             'getBook',
             'confirmAddBook',

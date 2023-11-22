@@ -319,6 +319,52 @@ electronIpcMain.handle('getTablaEquipo', async (event) => {
 });
 
 
+electronIpcMain.handle('getTablaUsuario', async (event) => {
+    const sql = 'SELECT * FROM alumnos';
+
+    try {
+        const results = await queryAsync(sql);
+        console.log("Tamano de los resultados: "+results.length);
+        if (results.length > 0) {
+            console.log(results)
+            return results;
+        } else {
+            // Puedes manejar el caso en que no se encuentren resultados.
+            console.log("No se encontraron resultados.");
+            console.log(results.length)
+            return null;
+        }
+    } catch (error) {
+        // Manejar errores de consulta.
+        console.error(error);
+        return null;
+    }
+});
+
+
+electronIpcMain.handle('getTablaUsuarioLista', async (event) => {
+    const sql = 'SELECT * FROM alumnos WHERE lista = 1';
+
+    try {
+        const results = await queryAsync(sql);
+        console.log("Tamano de los resultados: "+results.length);
+        if (results.length > 0) {
+            console.log(results)
+            return results;
+        } else {
+            // Puedes manejar el caso en que no se encuentren resultados.
+            console.log("No se encontraron resultados.");
+            console.log(results.length)
+            return null;
+        }
+    } catch (error) {
+        // Manejar errores de consulta.
+        console.error(error);
+        return null;
+    }
+});
+
+
 electronIpcMain.on('logout', (event) => {
     store.delete('user');
     store.delete('matricula');
