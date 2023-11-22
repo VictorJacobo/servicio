@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Registro servicio</title>
+  <link rel="stylesheet" href="./../../node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css" />
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -51,7 +52,7 @@
       <a class="btn btn-primary" href="./prestamo.html" role="button">Prestámo</a>
     </div>
     <div class="col-2">
-      <a class="btn btn-primary disabled" href="./devolucion.html" role="button" aria-disabled="true">Devolución</a>
+      <a class="btn btn-primary disabled" href="./devolucion.html" role="button" >Devolución</a>
     </div>
     <div class="col-2">
       <a class="btn btn-primary" href="./equipos.html" role="button">Equipos</a>
@@ -63,13 +64,47 @@
       <a class="btn btn-primary" href="./lista.html" role="button">Lista negra</a>
     </div>
     <div class="col-2">
-      <a class="btn btn-primary" href="./usuarios.html" role="button">Usuarios</a>
+      <a class="btn btn-primary" href="./alumnos.html" role="button" aria-disabled="true">Alumnos</a>
     </div>
   </div>
+
+  
+  <div class="container">
+    <div class="card">
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <table id="alumnos_data" class="table table-bordered table-hover tabla">
+            <thead>
+              <tr>
+                <th class = "centered-header">Matricula</th>
+                <th class = "centered-header">Nombres</th>
+                <th class = "centered-header">Apellidos</th>
+                <th class = "centered-header">Correo</th>
+                <th class = "centered-header">Carrera</th>
+                <th class = "centered-header">Accion</th>
+              </tr>
+            </thead>
+            <tbody id="alumnos"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- jQuery primero -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- DataTable -->
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+  <!-- Otros scripts después -->
   <script src="./../assets/vendors/boot/js/bootstrap.js"></script>
   <script src="./../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
   <script src="./js/menu.js"></script>
   <script src="./js/login-user.js"></script>
+  <script src="./js/alumnos.js"></script>
 </body>
 
 </html>

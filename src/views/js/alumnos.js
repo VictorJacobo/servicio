@@ -43,7 +43,7 @@ const initDataTable = async () => {
 
 const listUsers = async () => {
     try {
-        const result = await window.ipcRender.invoke('getTablaAlumnosLista');
+        const result = await window.ipcRender.invoke('getTablaAlumnos');
             //console.log("Equipos: "+result)
             let content = ``;
 
@@ -55,7 +55,7 @@ const listUsers = async () => {
                     <td>${alumno.Apellidos}</td>
                     <td>${alumno.Correo}</td>
                     <td>${alumno.Carrera}</td>
-                    <td><button class="btn btn-success" onclick="quitarlistaNegra('${alumno.Matricula_A}')">Quitar</button></td>
+                    <td><button class="btn btn-danger" onclick="listaNegra('${alumno.Matricula_A}')">Lista Negra</button></td>
                 </tr>`;
             });
             $('#alumnos').html(content)
@@ -71,20 +71,20 @@ window.addEventListener("load", async () => {
 });
 
 
-const quitarlistaNegra = (id) => {
+const listaNegra = (id) => {
     Swal.fire({
         title: '¿Estás seguro?',
-        text: 'Esta acción quitará de la lista negra al alumno. ¿Estás seguro de continuar?',
+        text: 'Esta acción pondra en lista negra al alumno. ¿Estás seguro de continuar?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, quitar de lista negra',
+        confirmButtonText: 'Sí, poner en lista negra',
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
             // El usuario confirmó la eliminación, llamar a eliminaEquipo
-            window.ipcRender.invoke('quitarlistaNegra', id).then((result) => {
+            window.ipcRender.invoke('listaNegra', id).then((result) => {
                 if (result == true) {
                     Swal.fire({
                         title: 'Éxito',

@@ -26,13 +26,16 @@ const ipc = {
             'leerQR',
             'getTablaEquipo',
             'getTablaUsuario',
+            'getTablaAlumnos',
             'getTablaPrestamos',
             'getTablaPrestamosDevueltos',
-            'getTablaUsuarioLista',
+            'getTablaAlumnosLista',
             'registraEquipo',
             'eliminaEquipo',
             'devolverEquipo',
-            'eliminaHistorialPrestamo'/*
+            'eliminaHistorialPrestamo',
+            'listaNegra',
+            'quitarlistaNegra'/*
             'getBooks',
             'getBook',
             'confirmAddBook',

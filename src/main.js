@@ -340,6 +340,27 @@ electronIpcMain.handle('getTablaUsuario', async (event) => {
         return null;
     }
 });
+electronIpcMain.handle('getTablaAlumnos', async (event) => {
+    const sql = 'SELECT * FROM alumnos';
+
+    try {
+        const results = await queryAsync(sql);
+        console.log("Tamano de los resultados: "+results.length);
+        if (results.length > 0) {
+            console.log(results)
+            return results;
+        } else {
+            // Puedes manejar el caso en que no se encuentren resultados.
+            console.log("No se encontraron resultados.");
+            console.log(results.length)
+            return null;
+        }
+    } catch (error) {
+        // Manejar errores de consulta.
+        console.error(error);
+        return null;
+    }
+});
 
 electronIpcMain.handle('getTablaPrestamos', async (event) => {
     const sql = 'SELECT * FROM prestamos WHERE Fecha_D IS NULL';
@@ -388,7 +409,7 @@ electronIpcMain.handle('getTablaPrestamosDevueltos', async (event) => {
 
 
 
-electronIpcMain.handle('getTablaUsuarioLista', async (event) => {
+electronIpcMain.handle('getTablaAlumnosLista', async (event) => {
     const sql = 'SELECT * FROM alumnos WHERE lista = 1';
 
     try {
@@ -456,6 +477,32 @@ electronIpcMain.handle('eliminaHistorialPrestamo', async (event,data) =>{
         return true;
     } catch (error) {
         console.error("Error al eliminar historial del prestamo equipo:", error);
+        return false;
+    }
+});
+
+electronIpcMain.handle('listaNegra', async (event,data) =>{
+    fecha= new Date().toISOString()
+    const sql = 'UPDATE alumnos SET lista = 1  WHERE Matricula_A =?'
+    try {
+        await queryAsync(sql, [data]);
+        console.log("Devolver equipo exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al devolver equipo:", error);
+        return false;
+    }
+});
+
+electronIpcMain.handle('quitarlistaNegra', async (event,data) =>{
+    fecha= new Date().toISOString()
+    const sql = 'UPDATE alumnos SET lista = 0  WHERE Matricula_A =?'
+    try {
+        await queryAsync(sql, [data]);
+        console.log("Devolver equipo exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al devolver equipo:", error);
         return false;
     }
 });
