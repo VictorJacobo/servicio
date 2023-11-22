@@ -35,7 +35,8 @@ const ipc = {
             'devolverEquipo',
             'eliminaHistorialPrestamo',
             'listaNegra',
-            'quitarlistaNegra'/*
+            'quitarlistaNegra',
+            'editaEquipoData'/*
             'getBooks',
             'getBook',
             'confirmAddBook',
