@@ -116,7 +116,7 @@ const consultaEquipo = () => {
 }
 
 const Envia = () => {
-    const data = { Amatricula: Amatri.value, equipo: equipo.value, fecha: new Date().toISOString() }
+    const data = { Amatricula: Amatri.value, equipo: id.value, fecha: new Date().toISOString() }
     window.ipcRender.invoke('registraPrestamo', data).then((result) => {
         if (result == true) {
             Swal.fire({
