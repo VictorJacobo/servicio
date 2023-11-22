@@ -10,12 +10,12 @@ body {
    background-color: #dee8ef; 
  }
 
-tabla th,
-tabla td {
+.tabla th,
+.tabla td {
     border-width: 1.2px; /* Puedes ajustar el grosor del borde aquí */
     border-color: #0f0c29; /* Puedes ajustar el color del borde aquí */
 }
-tabla thead th {
+.tabla thead th {
     background-color:#2471A3;
     color: #fff; /* Cambia esto al color del texto que desees */
 }
@@ -23,11 +23,11 @@ tabla thead th {
     margin-top: 50px; /* Puedes ajustar el valor según tus necesidades */
 }
 
-tabla_filter {
+.tabla_filter {
     margin-top: 10px;
     text-align: center !important;
 }
-tabla_length {
+.tabla_length {
     margin-top: 10px;
     text-align: center !important;
 }
