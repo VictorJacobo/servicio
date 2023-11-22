@@ -222,7 +222,7 @@ electronIpcMain.handle('getEquipoData', async (event, data) => {
 //Aparto donde se consulta informacion d eun equipo
 electronIpcMain.handle('registraPrestamo', async (event, data) => {
     const { Amatricula, equipo, fecha } = data;
-    const sql = 'INSERT INTO prestamos (Matricula_A, Matricula_Admin, IdEquipo, Fecha_P) VALUES (?, ?, ?, ?)';
+    const sql = 'INSERT INTO prestamos (Matricula_A, Matricula_Admin, idEquipo, Fecha_P) VALUES (?, ?, ?, ?)';
 
     try {
         await queryAsync(sql, [Amatricula, store.get('matricula'), equipo, fecha]);
@@ -342,6 +342,52 @@ electronIpcMain.handle('getTablaUsuario', async (event) => {
     }
 });
 
+electronIpcMain.handle('getTablaPrestamos', async (event) => {
+    const sql = 'SELECT * FROM prestamos WHERE Fecha_D IS NULL';
+
+    try {
+        const results = await queryAsync(sql);
+        console.log("Tamano de los resultados: "+results.length);
+        if (results.length > 0) {
+            console.log(results)
+            return results;
+        } else {
+            // Puedes manejar el caso en que no se encuentren resultados.
+            console.log("No se encontraron resultados.");
+            console.log(results.length)
+            return null;
+        }
+    } catch (error) {
+        // Manejar errores de consulta.
+        console.error(error);
+        return null;
+    }
+});
+
+electronIpcMain.handle('getTablaPrestamosDevueltos', async (event) => {
+    const sql = 'SELECT * FROM prestamos WHERE Fecha_D IS NOT NULL';
+
+    try {
+        const results = await queryAsync(sql);
+        console.log("Tamano de los resultados: "+results.length);
+        if (results.length > 0) {
+            console.log(results)
+            return results;
+        } else {
+            // Puedes manejar el caso en que no se encuentren resultados.
+            console.log("No se encontraron resultados.");
+            console.log(results.length)
+            return null;
+        }
+    } catch (error) {
+        // Manejar errores de consulta.
+        console.error(error);
+        return null;
+    }
+});
+
+
+
 
 electronIpcMain.handle('getTablaUsuarioLista', async (event) => {
     const sql = 'SELECT * FROM alumnos WHERE lista = 1';
@@ -400,6 +446,30 @@ electronIpcMain.handle('editaEquipoData', async (event, data) => {
         return true;
     } catch (error) {
         console.error("Error al editar equipo:", error);
+        return false;
+    }
+});
+
+electronIpcMain.handle('devolverEquipo', async (event,data) =>{
+    fecha= new Date().toISOString()
+    const sql = 'UPDATE prestamos SET Fecha_D =?  WHERE idPrestamos =?'
+    try {
+        await queryAsync(sql, [fecha,data]);
+        console.log("Devolver equipo exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al devolver equipo:", error);
+        return false;
+    }
+});
+electronIpcMain.handle('eliminaHistorialPrestamo', async (event,data) =>{
+    const sql = 'DELETE FROM prestamos WHERE idPrestamos=?'
+    try {
+        await queryAsync(sql, [data]);
+        console.log("Eliminar historial del prestamo exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al eliminar historial del prestamo equipo:", error);
         return false;
     }
 });
