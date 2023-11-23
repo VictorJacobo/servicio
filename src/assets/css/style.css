@@ -55,6 +55,7 @@ tabla_length {
     margin-top: 10px;/* Ajusta según sea necesario */
 }
 
+
 .dataTables_length {
     text-align: center ;
     margin-top: 10px;
@@ -74,10 +75,10 @@ tabla_length {
 .tBotones .row{
     padding: 0 !important;
 }
-
-.tBotones .btn{
-    
+.card .transparent-row {
+    background-color: transparent !important;
 }
+
 
 /*======================*/
 .btn-primary {

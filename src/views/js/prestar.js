@@ -90,9 +90,8 @@ const consultaMatri = () => {
 }
 
 const consultaEquipo = () => {
-    const data = { equipo: equipo.value };
     //window.ipcRender.send('consultaE', data);
-    window.ipcRender.invoke('getEquipoData', data).then((result) => {
+    window.ipcRender.invoke('getEquipoData', equipo.value).then((result) => {
         if (result !== null) {
             console.log(result)
             id.value = result.id;
@@ -172,9 +171,8 @@ const verifica = () => {
 
 
 function leerCodigoQR() {
-    window.ipcRender.invoke('leerQR').then((result) => {
-        const data = { equipo: result};
-        window.ipcRender.invoke('getEquipoData', data).then((result) => {
+    window.ipcRender.invoke('leerQR').then((res) => {
+        window.ipcRender.invoke('getEquipoData', res).then((result) => {
             if (result !== null){
                 console.log(result)
                 id.value = result.id;

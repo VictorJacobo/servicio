@@ -5,6 +5,9 @@ let dataTableIsInitialized = false;
 const dataTableOptions = {
     pageLength: 5,
     destroy: true,
+    scrollX: false,
+    autoWidth: true,
+    responsive: true,
     stripeClasses: [], // Desactiva las clases de rayas de DataTable
     columnDefs: [
         { className: "centered-header", targets: "_all" }, // Aplica la clase a todas las columnas
