@@ -12,7 +12,11 @@ const dataTableOptions = {
     columnDefs: [
         { className: "centered-header", targets: "_all" }, // Aplica la clase a todas las columnas
         { searchable: false, targets: [5]},
-        { orderable: false, targets: [5]}
+        { orderable: false, targets: [5]},
+        {width: "10%", targets: [0,2,3]},
+        {width: "20%", targets: [1]},
+        {width: "15%", targets: [5]},
+        {width: "35%", targets: [4]}
     ],
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",

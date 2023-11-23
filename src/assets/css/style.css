@@ -75,10 +75,9 @@ tabla_length {
 .tBotones .row{
     padding: 0 !important;
 }
-.card .transparent-row {
+.card .row {
     background-color: transparent !important;
 }
-
 
 /*======================*/
 .btn-primary {
