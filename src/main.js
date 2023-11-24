@@ -19,6 +19,7 @@ let window;
 let loginWindow;
 let ConfiWindow;
 let userWindow;
+let registrawindow;
 
 const createWindowDashboard = () => {
     // Create the browser window.
@@ -61,8 +62,7 @@ const createUsuarios = () => {
 
 const registra = () => {
     // Create the browser window.
-    const { BrowserWindow } = require('electron');
-    const window = new BrowserWindow({
+    registrawindow = new electronBrowserWindow({
         //icon: __dirname + '/assets/images/favicon.ico',
         width: 800,
         height: 500,
@@ -76,43 +76,11 @@ const registra = () => {
     });
 
     // and load the index.html of the app.
-    window.loadFile(path.join(__dirname, 'views/registro.html'));
-
-    // Open the DevTools.
-    //window.webContents.openDevTools();
+    registrawindow.loadFile(path.join(__dirname, 'views/registro.html'));
 
     // Maximize the window to make it full screen.
-    window.maximize();
-
-    // Listen for the window being closed.
-    window.on('closed', () => {
-        // Dereference the window object, usually you would store windows
-        // in an array if your app supports multi windows, this is the time
-        // when you should delete the corresponding element.
-        window = null;
-    });
+    registrawindow.maximize();
 };
-
-
-// const registra = () => {
-//     // Create the browser window.
-//     window = new electronBrowserWindow({
-//         //icon: __dirname + '/assets/images/favicon.ico',
-//         width: 800,
-//         height: 500,
-//         autoHideMenuBar: true,
-//         webPreferences: {
-//             nodeIntegration: true,
-//             contextIsolation: true,
-//             //devTools: false,
-//             preload: path.join(__dirname, 'preload.js')
-//         }
-//     });
-
-//     // and load the index.html of the app.
-//     window.loadFile(path.join(__dirname, 'views/registro.html'));
-
-// };
 
 const createWindow = () => {
     // Create the browser window.
@@ -133,6 +101,9 @@ const createWindow = () => {
 
     // and load the index.html of the app.
     loginWindow.loadFile(path.join(__dirname, 'views/login.html'));
+
+    // Maximize the window to make it full screen.
+    loginWindow.maximize();
 };
 
 const createConf = () => {
@@ -241,6 +212,14 @@ electronIpcMain.on('openUsers', (event) => {
 electronIpcMain.on('openRegistra', (event) => {
     registra();
     console.log("Abrir registra")
+    loginWindow.close();
+    //userWindow.show();
+});
+
+electronIpcMain.on('openlogin1', (event) => {
+    createWindow();
+    console.log("Abrir login")
+    registrawindow.close();
     //userWindow.show();
 });
 
@@ -517,7 +496,7 @@ electronIpcMain.handle('getTablaAlumnosLista', async (event) => {
     }
 });
 
-//Aparto donde se consulta informacion d eun equipo
+//Aparto donde se consulta informacion de un equipo
 electronIpcMain.handle('registraEquipo', async (event, data) => {
     const sql = 'INSERT INTO equipo (idEquipo, Marca, Modelo,N_serie,Tipo) VALUES (?, ?, ?, ?, ?)';
 
@@ -530,6 +509,21 @@ electronIpcMain.handle('registraEquipo', async (event, data) => {
         return false;
     }
 });
+
+// Apartado donde se consulta informacion de un alumno
+electronIpcMain.handle('registraAlumno', async (event, data) => {
+    const sql = 'INSERT INTO alumnos (Matricula_A, Nombres, Apellidos, Correo, Carrera) VALUES (?, ?, ?, ?, ?)';
+
+    try {
+        await queryAsync(sql, [data.matricula, data.nombres, data.apellidos, data.correo, data.carrera]);
+        console.log("Registro de alumno exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al registrar alumno:", error);
+        return false;
+    }
+});
+
 
 electronIpcMain.handle('eliminaEquipo', async (event,data) =>{
     const sql = 'DELETE FROM equipo WHERE idEquipo=?'

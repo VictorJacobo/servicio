@@ -6,9 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Registro servicio</title>
     <link rel="stylesheet" href="../assets/css/style.css">
-    <!-- Bootstrap CSS y Bootstrap Icons (CDN) -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.19.0/font/bootstrap-icons.css"> -->
 
 </head>
 
@@ -18,46 +15,48 @@
 
             <div class="card">
                 <div class="login-d">
-                    <h4>Laboratorio</h4>
-                    <div class="title1">
-                        <p>Registrarse</p>
+                    <div class="head">
+                        <h4>Laboratorio</h4>
+                        <div class="title1">
+                            <p>Registrarse</p>
+                        </div>
                     </div>
+                    
                     <!-- Agregado: Formulario de Registro -->
-                    <form id="registroForm">
+                    <form id="registroForm" onsubmit="return AgregarAlumno(event)">
                         <div class="form-group">
                             <label for="matricula">Matrícula:</label>
-                            <input type="text" class="form-control" id="matricula" name="matricula" required>
+                            <input type="text" class="form-control" id="nmatricula" name="matricula" required>
                         </div>
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <input type="text" class="form-control" id="nnombres" name="nombre" required>
                         </div>
                         <div class="form-group">
                             <label for="apellidos">Apellidos:</label>
-                            <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+                            <input type="text" class="form-control" id="napellidos" name="apellidos" required>
                         </div>
                         <div class="form-group">
                             <label for="correo">Correo:</label>
-                            <input type="email" class="form-control" id="correo" name="correo" required>
+                            <input type="email" class="form-control" id="ncorreo" name="correo" required>
                         </div>
                         <div class="form-group">
                             <label for="carrera">Carrera:</label>
-                            <select class="form-control" id="carrera" name="carrera" required>
+                            <select class="form-control" id="ncarrera" name="carrera" required>
                                 <option value="" selected disabled>Selecciona una carrera</option>
                                 <option value="opcion1">Licenciatura en Ciencias de la Computacion</option>
                                 <option value="opcion2">Ingenieria en Ciencias de la Computacion</option>
                                 <option value="opcion3">Ingenieria en Tecnologias de la Informacion</option>
                             </select>
                         </div>
-                        
                         <div class="btn1">
-                            <button type="submit" class="btn btn-primary1">Registrar</button>
+                            <button type="submit" class="btn btn-primary1" >Registrar</button>
                         </div>
                     </form>
                     <!-- Fin del formulario de Registro -->
                     <div class="row">
                         <!-- Icono de flecha personalizado para regresar a la pantalla de inicio de sesión -->
-                        <a href="./login.html" class="back-link">
+                        <a href="#" id="back" class="back-link">
                             <img src="./../assets/images/arrow.svg" class="arrow-icon">
                         </a>
                     </div>
@@ -68,5 +67,7 @@
         </div>
     </div>
     <script src="./../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="./../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="./js/registro.js"></script>
 </body>
 </html>

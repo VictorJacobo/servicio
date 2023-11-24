@@ -9,6 +9,7 @@ const ipc = {
             'configuracion',
             'openConf',
             'openUsers',
+            'openlogin1',
             'openRegistra'/*,
             'consulta',1
             'consultaE'
@@ -33,6 +34,7 @@ const ipc = {
             'getTablaPrestamosDevueltos',
             'getTablaAlumnosLista',
             'registraEquipo',
+            'registraAlumno',
             'eliminaEquipo',
             'devolverEquipo',
             'eliminaHistorialPrestamo',
