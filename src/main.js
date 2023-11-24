@@ -61,7 +61,8 @@ const createUsuarios = () => {
 
 const registra = () => {
     // Create the browser window.
-    window = new electronBrowserWindow({
+    const { BrowserWindow } = require('electron');
+    const window = new BrowserWindow({
         //icon: __dirname + '/assets/images/favicon.ico',
         width: 800,
         height: 500,
@@ -77,7 +78,41 @@ const registra = () => {
     // and load the index.html of the app.
     window.loadFile(path.join(__dirname, 'views/registro.html'));
 
+    // Open the DevTools.
+    //window.webContents.openDevTools();
+
+    // Maximize the window to make it full screen.
+    window.maximize();
+
+    // Listen for the window being closed.
+    window.on('closed', () => {
+        // Dereference the window object, usually you would store windows
+        // in an array if your app supports multi windows, this is the time
+        // when you should delete the corresponding element.
+        window = null;
+    });
 };
+
+
+// const registra = () => {
+//     // Create the browser window.
+//     window = new electronBrowserWindow({
+//         //icon: __dirname + '/assets/images/favicon.ico',
+//         width: 800,
+//         height: 500,
+//         autoHideMenuBar: true,
+//         webPreferences: {
+//             nodeIntegration: true,
+//             contextIsolation: true,
+//             //devTools: false,
+//             preload: path.join(__dirname, 'preload.js')
+//         }
+//     });
+
+//     // and load the index.html of the app.
+//     window.loadFile(path.join(__dirname, 'views/registro.html'));
+
+// };
 
 const createWindow = () => {
     // Create the browser window.
@@ -153,7 +188,7 @@ electronIpcMain.on('login', (event, data) => {
 
 function validateLogin(data) {
     const { usuario, password } = data;
-    const sql = 'SELECT * FROM aministradores WHERE Matricula_Admin=? AND Contraseña=?';
+    const sql = 'SELECT * FROM aministradores WHERE Matricula_Admin=? AND Contrasena=?';
 
     db.query(sql, [usuario, password], (error, results, fields) => {
         if (error) {
