@@ -12,39 +12,49 @@
 <body>
   <div class="container-fluid">
     <div class="row full">
+      <div class="section-left">
+        <div class="row buap">
+          <img src="./../assets/images/escudo_buap.png">
+      </div>
+      <div class="row fcc">
+        <img src="./../assets/images/fcc_logo.png">
+    </div>
+      </div>
 
-      <div class="card">
-        <div class="login-c">
-          <div class="head">
-            <h4>Laboratorio</h4>
-            <h5 id="text-error" class="text-muted font-weight-normal">
-              ¡Bienvenido! Ingrese a su cuenta
-            </h5>
-          </div>
-          
-          <form class="text-center" onsubmit="return formSubmit(event)">
-            <div class="input-group mb-3">
-              <div class="input-group-append">
-                <div class="input-group-text"><img src="./../assets/images/user.svg"></div>
+      <div class="section-right">
+        <div class="card tamano">
+          <div class="login-c">
+            <div class="head">
+              <h4>Laboratorio</h4>
+              <h5 id="text-error" class="text-muted font-weight-normal">
+                ¡Bienvenido! Ingrese a su cuenta
+              </h5>
+            </div>
+            
+            <form class="text-center" onsubmit="return formSubmit(event)">
+              <div class="input-group mb-3">
+                <div class="input-group-append">
+                  <div class="input-group-text"><img src="./../assets/images/user.svg"></div>
+                </div>
+                <input type="text" name="user" class="form-control" placeholder="Usuario" id="username">
               </div>
-              <input type="text" name="user" class="form-control" placeholder="Usuario" id="username">
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-append">
-                <div class="input-group-text"><img src="./../assets/images/lock-fill.svg"></div>
+              <div class="input-group mb-3">
+                <div class="input-group-append">
+                  <div class="input-group-text"><img src="./../assets/images/lock-fill.svg"></div>
+                </div>
+                <input type="password" class="form-control" id="contra" placeholder="Contraseña">
+                <img src="./../assets/images/eye.svg" id="eye" onclick="VerPass()">
               </div>
-              <input type="password" class="form-control" id="contra" placeholder="Contraseña">
-              <img src="./../assets/images/eye.svg" id="eye" onclick="VerPass()">
+              <div class="mb-3">
+                <button type="submit" class="btn btn-primary" id="btnLogin">Enviar</button>
+              </div>
+            </form>
+            <div class="row">
+              <a href="./login-h.html" class="text-center">Iniciar sesión con huella digital</a>
             </div>
-            <div class="mb-3">
-              <button type="submit" class="btn btn-primary" id="btnLogin">Enviar</button>
+            <div class="row">
+              <a href="#" class="text-center" id="btnRegistra">Registrar Alumno</a>
             </div>
-          </form>
-          <div class="row">
-            <a href="./login-h.html" class="text-center">Iniciar sesión con huella digital</a>
-          </div>
-          <div class="row">
-            <a href="#" class="text-center" id="btnRegistra">Registrar Alumno</a>
           </div>
         </div>
       </div>

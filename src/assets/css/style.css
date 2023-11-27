@@ -84,17 +84,29 @@ tabla_length {
     background-color: #254ec9;
 }
 
+/* ... Tu código anterior ... */
+
 .full {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    padding: 0 30vw;
-    background: #0f0c29;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    width: 100vw;
+    padding: 0;
+    background: #0f0c29;
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#15297c", endColorstr="#2684b5", GradientType=1);
+}
+
+.section-left,
+.section-right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .card {
@@ -102,6 +114,11 @@ tabla_length {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     padding: 0;
+}
+
+.tamano{
+    width: 400px;
+    height: 380px;
 }
 
 .card .mb-3 {
@@ -114,7 +131,31 @@ tabla_length {
     text-align: center;
 }
 
+.buap{
+    height: 150px;
+    width: 150px;
+}
+
+.fcc{
+    height: 200px;
+    width: 150px;
+}
+
 /* Registro */
+
+.full1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 0 30vw;
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#15297c", endColorstr="#2684b5", GradientType=1);
+}
+
 .login-d h4 {
     margin-top: 2%;
     font-weight: bold;
