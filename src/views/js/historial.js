@@ -13,9 +13,9 @@ const dataTableOptions = {
     ],
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
-        zeroRecords: "Ningún usuario encontrado",
+        zeroRecords: "No se encontraron prestamos en el historial",
         info: "Mostrando de _START_ a _END_ de un total de _TOTAL_ registros",
-        infoEmpty: "Ningún usuario encontrado",
+        infoEmpty: "Sin historial disponible",
         infoFiltered: "(filtrados desde _MAX_ registros totales)",
         search: "Buscar:",
         loadingRecords: "Cargando...",
@@ -46,19 +46,21 @@ const listUsers = async () => {
         const result = await window.ipcRender.invoke('getTablaPrestamosDevueltos');
             //console.log("Equipos: "+result)
             let content = ``;
+            if(result!=null){
 
-            result.forEach((prestamo,index) => {
-                content += `
-                <tr>
-                    <td>${prestamo.Matricula_A}</td>
-                    <td>${prestamo.Matricula_Admin}</td>
-                    <td>${prestamo.idEquipo}</td>
-                    <td>${prestamo.Fecha_P}</td>
-                    <td>${prestamo.Fecha_D}</td>
-                    <td><button class="btn btn-danger" onclick="eliminarPrestamo('${prestamo.idPrestamos}')">Eliminar</button></td>
-                </tr>`;
-            });
-            $('#tableBody_historial').html(content)
+                result.forEach((prestamo,index) => {
+                    content += `
+                    <tr>
+                        <td>${prestamo.Matricula_A}</td>
+                        <td>${prestamo.Matricula_Admin}</td>
+                        <td>${prestamo.idEquipo}</td>
+                        <td>${prestamo.Fecha_P}</td>
+                        <td>${prestamo.Fecha_D}</td>
+                        <td><button class="btn btn-danger" onclick="eliminarPrestamo('${prestamo.idPrestamos}')">Eliminar</button></td>
+                    </tr>`;
+                });
+                $('#tableBody_historial').html(content)
+            }
  
 
     } catch (ex) {

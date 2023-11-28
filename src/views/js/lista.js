@@ -2,6 +2,7 @@ let dataTable;
 let dataTableIsInitialized = false;
 
 
+
 const dataTableOptions = {
     pageLength: 5,
     destroy: true,
@@ -13,9 +14,9 @@ const dataTableOptions = {
     ],
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
-        zeroRecords: "Ningún usuario encontrado",
+        zeroRecords: "No hay alumnos en lista negra",
         info: "Mostrando de _START_ a _END_ de un total de _TOTAL_ registros",
-        infoEmpty: "Ningún usuario encontrado",
+        infoEmpty: "Sin resultados",
         infoFiltered: "(filtrados desde _MAX_ registros totales)",
         search: "Buscar:",
         loadingRecords: "Cargando...",
@@ -46,19 +47,21 @@ const listUsers = async () => {
         const result = await window.ipcRender.invoke('getTablaAlumnosLista');
             //console.log("Equipos: "+result)
             let content = ``;
-
-            result.forEach((alumno,index) => {
-                content += `
-                <tr>
-                    <td>${alumno.Matricula_A}</td>
-                    <td>${alumno.Nombres}</td>
-                    <td>${alumno.Apellidos}</td>
-                    <td>${alumno.Correo}</td>
-                    <td>${alumno.Carrera}</td>
-                    <td><button class="btn btn-success" onclick="quitarlistaNegra('${alumno.Matricula_A}')">Quitar</button></td>
-                </tr>`;
-            });
-            $('#alumnos').html(content)
+            if(result!=null){
+                result.forEach((alumno,index) => {
+                    content += `
+                    <tr>
+                        <td>${alumno.Matricula_A}</td>
+                        <td>${alumno.Nombres}</td>
+                        <td>${alumno.Apellidos}</td>
+                        <td>${alumno.Correo}</td>
+                        <td>${alumno.Carrera}</td>
+                        <td><button class="btn btn-success" onclick="quitarlistaNegra('${alumno.Matricula_A}')">Quitar</button></td>
+                    </tr>`;
+                });
+                $('#alumnos').html(content)  
+            }
+            
  
 
     } catch (ex) {
@@ -88,7 +91,7 @@ const quitarlistaNegra = (id) => {
                 if (result == true) {
                     Swal.fire({
                         title: 'Éxito',
-                        text: 'El equipo se ha devuelto exitosamente',
+                        text: 'El alumno se ha quitado de la lista negra',
                         icon: 'success',
                         confirmButtonText: 'Ok'
                     }).then(() => {
@@ -98,7 +101,7 @@ const quitarlistaNegra = (id) => {
                 } else {
                     Swal.fire({
                         title: 'Error',
-                        text: 'El equipo no se ha podido devolver',
+                        text: 'El alumno no se ha podido quitar de la lista negra',
                         icon: 'error',
                         confirmButtonText: 'Ok'
                     });

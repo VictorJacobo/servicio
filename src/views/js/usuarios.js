@@ -44,17 +44,19 @@ const listUsers = async () => {
         const result = await window.ipcRender.invoke('getTablaUsuario');
             //console.log("Equipos: "+result)
             let content = ``;
-            result.forEach((usuario,index) => {
-                content += `
-                <tr>
-                    <td>${usuario.Matricula_A}</td>
-                    <td>${usuario.Nombres}</td>
-                    <td>${usuario.Apellidos}</td>
-                    <td>${usuario.Correo}</td>
-                    <td>${usuario.Carrera}</td>
-                </tr>`;
-            });
-            $('#users').html(content)
+            if(result!=null){
+                result.forEach((usuario,index) => {
+                    content += `
+                    <tr>
+                        <td>${usuario.Matricula_A}</td>
+                        <td>${usuario.Nombres}</td>
+                        <td>${usuario.Apellidos}</td>
+                        <td>${usuario.Correo}</td>
+                        <td>${usuario.Carrera}</td>
+                    </tr>`;
+                });
+                $('#users').html(content)
+            }
  
 
     } catch (ex) {

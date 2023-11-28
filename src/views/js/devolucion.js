@@ -8,14 +8,14 @@ const dataTableOptions = {
     stripeClasses: [], // Desactiva las clases de rayas de DataTable
     columnDefs: [
         { className: "centered-header", targets: "_all" }, // Aplica la clase a todas las columnas
-        { searchable: false, targets: [5]},
-        { orderable: false, targets: [5]}
+        { searchable: false, targets: [4]},
+        { orderable: false, targets: [4]}
     ],
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
-        zeroRecords: "Ningún usuario encontrado",
+        zeroRecords: "No hay prestamos activos",
         info: "Mostrando de _START_ a _END_ de un total de _TOTAL_ registros",
-        infoEmpty: "Ningún usuario encontrado",
+        infoEmpty: "Sin prestamos por devolver",
         infoFiltered: "(filtrados desde _MAX_ registros totales)",
         search: "Buscar:",
         loadingRecords: "Cargando...",
@@ -46,18 +46,19 @@ const listUsers = async () => {
         const result = await window.ipcRender.invoke('getTablaPrestamos');
             //console.log("Equipos: "+result)
             let content = ``;
-
-            result.forEach((prestamo,index) => {
-                content += `
-                <tr>
-                    <td>${prestamo.Matricula_A}</td>
-                    <td>${prestamo.Matricula_Admin}</td>
-                    <td>${prestamo.idEquipo}</td>
-                    <td>${prestamo.Fecha_P}</td>
-                    <td><button class="btn btn-success" onclick="devolverEquipo('${prestamo.idPrestamos}')">Devolver</button></td>
-                </tr>`;
-            });
-            $('#tableBody_devolucion').html(content)
+            if(result!=null){
+                result.forEach((prestamo,index) => {
+                    content += `
+                    <tr>
+                        <td>${prestamo.Matricula_A}</td>
+                        <td>${prestamo.Matricula_Admin}</td>
+                        <td>${prestamo.idEquipo}</td>
+                        <td>${prestamo.Fecha_P}</td>
+                        <td><button class="btn btn-success" onclick="devolverEquipo('${prestamo.idPrestamos}')">Devolver</button></td>
+                    </tr>`;
+                });
+                $('#tableBody_devolucion').html(content)
+            }
  
 
     } catch (ex) {

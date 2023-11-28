@@ -13,9 +13,9 @@ const dataTableOptions = {
     ],
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
-        zeroRecords: "Ningún usuario encontrado",
+        zeroRecords: "Ningún alumno encontrado",
         info: "Mostrando de _START_ a _END_ de un total de _TOTAL_ registros",
-        infoEmpty: "Ningún usuario encontrado",
+        infoEmpty: "Ningún alumno registrado",
         infoFiltered: "(filtrados desde _MAX_ registros totales)",
         search: "Buscar:",
         loadingRecords: "Cargando...",
@@ -46,19 +46,20 @@ const listUsers = async () => {
         const result = await window.ipcRender.invoke('getTablaAlumnos');
             //console.log("Equipos: "+result)
             let content = ``;
-
-            result.forEach((alumno,index) => {
-                content += `
-                <tr>
-                    <td>${alumno.Matricula_A}</td>
-                    <td>${alumno.Nombres}</td>
-                    <td>${alumno.Apellidos}</td>
-                    <td>${alumno.Correo}</td>
-                    <td>${alumno.Carrera}</td>
-                    <td><button class="btn btn-danger" onclick="listaNegra('${alumno.Matricula_A}')">Lista Negra</button></td>
-                </tr>`;
-            });
-            $('#alumnos').html(content)
+            if(result!=null){
+                result.forEach((alumno,index) => {
+                    content += `
+                    <tr>
+                        <td>${alumno.Matricula_A}</td>
+                        <td>${alumno.Nombres}</td>
+                        <td>${alumno.Apellidos}</td>
+                        <td>${alumno.Correo}</td>
+                        <td>${alumno.Carrera}</td>
+                        <td><button class="btn btn-danger" onclick="listaNegra('${alumno.Matricula_A}')">Lista Negra</button></td>
+                    </tr>`;
+                });
+                $('#alumnos').html(content)
+            }
  
 
     } catch (ex) {
@@ -88,7 +89,7 @@ const listaNegra = (id) => {
                 if (result == true) {
                     Swal.fire({
                         title: 'Éxito',
-                        text: 'El equipo se ha devuelto exitosamente',
+                        text: 'El alumno esta en lista negra',
                         icon: 'success',
                         confirmButtonText: 'Ok'
                     }).then(() => {
@@ -98,7 +99,7 @@ const listaNegra = (id) => {
                 } else {
                     Swal.fire({
                         title: 'Error',
-                        text: 'El equipo no se ha podido devolver',
+                        text: 'El equipo no se ha podido poner en lista negra',
                         icon: 'error',
                         confirmButtonText: 'Ok'
                     });

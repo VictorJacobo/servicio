@@ -42,10 +42,10 @@ const createWindowDashboard = () => {
 
 const createUsuarios = () => {
     // Create the browser window.
-    window = new electronBrowserWindow({
+    usuariowindow = new electronBrowserWindow({
         //icon: __dirname + '/assets/images/favicon.ico',
-        width: 800,
-        height: 500,
+        width: 900,
+        height: 600,
         autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: true,
@@ -56,7 +56,10 @@ const createUsuarios = () => {
     });
 
     // and load the index.html of the app.
-    window.loadFile(path.join(__dirname, 'views/usuarios.html'));
+    usuariowindow.loadFile(path.join(__dirname, 'views/usuarios.html'));
+    // Maximize the window to make it full screen.
+    usuariowindow.maximize();
+    
 
 };
 
@@ -159,7 +162,7 @@ electronIpcMain.on('login', (event, data) => {
 
 function validateLogin(data) {
     const { usuario, password } = data;
-    const sql = 'SELECT * FROM aministradores WHERE Matricula_Admin=? AND Contrasena=?';
+    const sql = 'SELECT * FROM aministradores WHERE Matricula_Admin=? AND Contraseña=?';
 
     db.query(sql, [usuario, password], (error, results, fields) => {
         if (error) {
