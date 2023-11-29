@@ -24,10 +24,10 @@ DROP TABLE IF EXISTS `alumnos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `alumnos` (
   `Matricula_A` int NOT NULL,
-  `Nombres` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Apellidos` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Correo` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Carrera` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Nombres` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Apellidos` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Correo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Carrera` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `lista` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Matricula_A`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -52,9 +52,9 @@ DROP TABLE IF EXISTS `aministradores`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aministradores` (
   `Matricula_Admin` int NOT NULL,
-  `Nombres` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Apellidos` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Contraseña` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Nombres` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Apellidos` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Contrasena` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`Matricula_Admin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -77,13 +77,13 @@ DROP TABLE IF EXISTS `equipo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `equipo` (
-  `idEquipo` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Marca` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Modelo` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `N_serie` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Tipo` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idEquipo` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Marca` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Modelo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `N_serie` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Tipo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `Fecha_UP` datetime DEFAULT NULL,
-  `Descripcion` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Descripcion` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idEquipo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -109,7 +109,7 @@ CREATE TABLE `prestamos` (
   `idPrestamos` int NOT NULL,
   `Matricula_A` int NOT NULL,
   `Matricula_Admin` int NOT NULL,
-  `idEquipo` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idEquipo` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `Fecha_P` datetime DEFAULT NULL,
   `Fecha_D` datetime DEFAULT NULL,
   PRIMARY KEY (`idPrestamos`),
@@ -140,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-22 13:20:53
+-- Dump completed on 2023-11-22 15:23:03

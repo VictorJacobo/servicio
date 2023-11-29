@@ -59,7 +59,7 @@ const createUsuarios = () => {
     usuariowindow.loadFile(path.join(__dirname, 'views/usuarios.html'));
     // Maximize the window to make it full screen.
     usuariowindow.maximize();
-    
+
 
 };
 
@@ -89,10 +89,8 @@ const createWindow = () => {
     // Create the browser window.
     loginWindow = new electronBrowserWindow({
         //icon: __dirname + '/assets/images/favicon.ico',
-        width: 500,
-        height: 470,
-        resizable: false,
-        maximizable: false,
+        width: 900,
+        height: 600,
         autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: true,
@@ -369,7 +367,7 @@ electronIpcMain.handle('getTablaEquipo', async (event) => {
 
     try {
         const results = await queryAsync(sql);
-        console.log("Tamano de los resultados: "+results.length);
+        console.log("Tamano de los resultados: " + results.length);
         if (results.length > 0) {
             console.log(results)
             return results;
@@ -392,7 +390,7 @@ electronIpcMain.handle('getTablaUsuario', async (event) => {
 
     try {
         const results = await queryAsync(sql);
-        console.log("Tamano de los resultados: "+results.length);
+        console.log("Tamano de los resultados: " + results.length);
         if (results.length > 0) {
             console.log(results)
             return results;
@@ -413,7 +411,7 @@ electronIpcMain.handle('getTablaAlumnos', async (event) => {
 
     try {
         const results = await queryAsync(sql);
-        console.log("Tamano de los resultados: "+results.length);
+        console.log("Tamano de los resultados: " + results.length);
         if (results.length > 0) {
             console.log(results)
             return results;
@@ -435,7 +433,7 @@ electronIpcMain.handle('getTablaPrestamos', async (event) => {
 
     try {
         const results = await queryAsync(sql);
-        console.log("Tamano de los resultados: "+results.length);
+        console.log("Tamano de los resultados: " + results.length);
         if (results.length > 0) {
             console.log(results)
             return results;
@@ -457,7 +455,7 @@ electronIpcMain.handle('getTablaPrestamosDevueltos', async (event) => {
 
     try {
         const results = await queryAsync(sql);
-        console.log("Tamano de los resultados: "+results.length);
+        console.log("Tamano de los resultados: " + results.length);
         if (results.length > 0) {
             console.log(results)
             return results;
@@ -482,7 +480,7 @@ electronIpcMain.handle('getTablaAlumnosLista', async (event) => {
 
     try {
         const results = await queryAsync(sql);
-        console.log("Tamano de los resultados: "+results.length);
+        console.log("Tamano de los resultados: " + results.length);
         if (results.length > 0) {
             console.log(results)
             return results;
@@ -528,7 +526,7 @@ electronIpcMain.handle('registraAlumno', async (event, data) => {
 });
 
 
-electronIpcMain.handle('eliminaEquipo', async (event,data) =>{
+electronIpcMain.handle('eliminaEquipo', async (event, data) => {
     const sql = 'DELETE FROM equipo WHERE idEquipo=?'
     try {
         await queryAsync(sql, [data]);
@@ -553,11 +551,11 @@ electronIpcMain.handle('editaEquipoData', async (event, data) => {
     }
 });
 
-electronIpcMain.handle('devolverEquipo', async (event,data) =>{
-    fecha= new Date().toISOString()
+electronIpcMain.handle('devolverEquipo', async (event, data) => {
+    fecha = new Date().toISOString()
     const sql = 'UPDATE prestamos SET Fecha_D =?  WHERE idPrestamos =?'
     try {
-        await queryAsync(sql, [fecha,data]);
+        await queryAsync(sql, [fecha, data]);
         console.log("Devolver equipo exitoso");
         return true;
     } catch (error) {
@@ -565,7 +563,7 @@ electronIpcMain.handle('devolverEquipo', async (event,data) =>{
         return false;
     }
 });
-electronIpcMain.handle('eliminaHistorialPrestamo', async (event,data) =>{
+electronIpcMain.handle('eliminaHistorialPrestamo', async (event, data) => {
     const sql = 'DELETE FROM prestamos WHERE idPrestamos=?'
     try {
         await queryAsync(sql, [data]);
@@ -577,8 +575,8 @@ electronIpcMain.handle('eliminaHistorialPrestamo', async (event,data) =>{
     }
 });
 
-electronIpcMain.handle('listaNegra', async (event,data) =>{
-    fecha= new Date().toISOString()
+electronIpcMain.handle('listaNegra', async (event, data) => {
+    fecha = new Date().toISOString()
     const sql = 'UPDATE alumnos SET lista = 1  WHERE Matricula_A =?'
     try {
         await queryAsync(sql, [data]);
@@ -590,8 +588,8 @@ electronIpcMain.handle('listaNegra', async (event,data) =>{
     }
 });
 
-electronIpcMain.handle('quitarlistaNegra', async (event,data) =>{
-    fecha= new Date().toISOString()
+electronIpcMain.handle('quitarlistaNegra', async (event, data) => {
+    fecha = new Date().toISOString()
     const sql = 'UPDATE alumnos SET lista = 0  WHERE Matricula_A =?'
     try {
         await queryAsync(sql, [data]);
