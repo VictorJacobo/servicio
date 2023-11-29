@@ -14,15 +14,18 @@ const formSubmit = (event) => {
 
 document.addEventListener('DOMContentLoaded', function () {
 
-        window.ipcRender.invoke('getConfiguracion').then((result) => {
+        window.ipcRender.invoke('getConfiguracion').then(async (result) => {
     
             if (result != null){
                 Ipserver.value=result.Ipserver;
                 Ipcamara.value=result.Ipcamara;
                 Puertolector.value=result.Puertolector;
-                window.ipcRender.invoke('camaras').then((r) => {
-                    camaras.value = r;
-                })
+                const devices = await navigator.mediaDevices.enumerateDevices();
+
+                // Filtra los dispositivos para obtener solo las cámaras de video
+                const cameras = devices.filter(device => device.kind === 'videoinput');
+                console.log(cameras)
+                camaras.value=cameras[0].label + cameras[1].label;
             }
         })
 

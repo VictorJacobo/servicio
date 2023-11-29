@@ -3,19 +3,25 @@ let dataTableIsInitialized = false;
 let openEye;
 let password;
 
-
 const dataTableOptions = {
     pageLength: 5,
     destroy: true,
+    scrollX: false,
+    autoWidth: true,
+    responsive: true,
     stripeClasses: [], // Desactiva las clases de rayas de DataTable
     columnDefs: [
-        { className: "centered-header", targets: "_all" } // Aplica la clase a todas las columnas
+        { className: "centered-header", targets: "_all" }, // Aplica la clase a todas las columnas
+        { searchable: false, targets: [5]},
+        { orderable: false, targets: [5]},
+        {width: "10%", targets: [0]},
+        {width: "15%", targets: [1,2,3,4,5,6]},
     ],
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
-        zeroRecords: "Ningún usuario encontrado",
+        zeroRecords: "Ningún equipo encontrado",
         info: "Mostrando de _START_ a _END_ de un total de _TOTAL_ registros",
-        infoEmpty: "Ningún usuario encontrado",
+        infoEmpty: "Ningún equipo encontrado",
         infoFiltered: "(filtrados desde _MAX_ registros totales)",
         search: "Buscar:",
         loadingRecords: "Cargando...",
@@ -27,6 +33,7 @@ const dataTableOptions = {
         }
     }
 };
+
 
 const initDataTable = async () => {
     await listUsers();
@@ -75,7 +82,7 @@ const listUsers = async () => {
                                     <button class="btn btn-success btn-sm" onclick="editarEquipo('${usuario.Matricula_A}')">Editar</button>
                                 </div>
                                 <div class="col-6">
-                                    <button class="btn btn-danger btn-sm" onclick="eliminarEquipo('${usuario.Matricula_A}')">Eliminar</button>
+                                    <button class="btn btn-danger btn-sm delete" onclick="eliminarEquipo('${usuario.Matricula_A}')">Eliminar</button>
                                 </div>
                             </div>
                         </td>

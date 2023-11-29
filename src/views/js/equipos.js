@@ -76,7 +76,6 @@ const listUsers = async () => {
                                 <div class="col-6">
                                     <button class="btn btn-success btn-sm" onclick="editarEquipo('${equipo.idEquipo}')">Editar</button>
                                 </div>
-                                
                                 <div class="col-6">
                                     <button class="btn btn-danger btn-sm delete"  onclick="eliminarEquipo('${equipo.idEquipo}')">Eliminar</button>
                                 </div>

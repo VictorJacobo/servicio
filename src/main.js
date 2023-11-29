@@ -258,7 +258,7 @@ electronIpcMain.handle('getDatos', async (event, data) => {
 //Aparto donde se consulta informacion d eun equipo
 electronIpcMain.handle('getEquipoData', async (event, data) => {
     const sql = 'SELECT * FROM equipo WHERE idEquipo=?';
-    console.log("La data es: "+data)
+    console.log("La data es: " + data)
     try {
         const results = await queryAsync(sql, [data]);
         if (results.length > 0) {
@@ -454,7 +454,7 @@ electronIpcMain.handle('getTablaEquipo', async (event) => {
 
 
 electronIpcMain.handle('getTablaUsuario', async (event) => {
-    const sql = 'SELECT * FROM alumnos';
+    const sql = 'SELECT * FROM aministradores';
 
     try {
         const results = await queryAsync(sql);
@@ -678,4 +678,5 @@ electronIpcMain.on('logout', (event) => {
     loginWindow.show();
     window.close();
 });
+
 

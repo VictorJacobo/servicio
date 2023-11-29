@@ -10,7 +10,8 @@ const ipc = {
             'openConf',
             'openUsers',
             'openlogin1',
-            'openRegistra'/*,
+            'openRegistra'
+            /*,
             'consulta',1
             'consultaE'
             'invitado',
