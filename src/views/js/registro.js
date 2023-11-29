@@ -26,7 +26,7 @@ const AgregarAlumno = (event) => {
         if (result == true) {
             Swal.fire({
                 title: 'Exito',
-                text: 'El equipo se ha registrado exitosamente',
+                text: 'El alumno se ha registrado exitosamente',
                 icon: 'success',
                 confirmButtonText: 'Ok'
             }).then(() => {
@@ -37,7 +37,7 @@ const AgregarAlumno = (event) => {
         } else {
             Swal.fire({
                 title: 'Error!',
-                text: 'El equipo no se ha podido registrar',
+                text: 'El Alumno no se ha podido registrar',
                 icon: 'error',
                 confirmButtonText: 'Ok'
             }).then(() => {
