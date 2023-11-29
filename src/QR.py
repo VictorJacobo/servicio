@@ -1,5 +1,5 @@
-import sys
 import cv2
+import numpy as np
 from pyzbar.pyzbar import decode
 
 # Función para capturar y decodificar un código QR
@@ -28,7 +28,7 @@ def read_qr_code():
 
         cv2.imshow("QR Code Scanner", frame)
 
-        if cv2.waitKey(1) & 0xFF == 27:  # Presiona 'ESC' para salir
+        if (cv2.waitKey(1) & 0xFF == 27) or not cv2.getWindowProperty("QR Code Scanner", cv2.WND_PROP_VISIBLE):  # Presiona 'ESC' para salir
             break
 
     cap.release()
@@ -37,6 +37,5 @@ def read_qr_code():
 
 
 if __name__ == "__main__":
-   data= read_qr_code()
-   print(data)
-   sys.stdout.flush()
+   data = read_qr_code()
+   print(data, end='')

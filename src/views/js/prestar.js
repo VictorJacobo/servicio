@@ -172,6 +172,7 @@ const verifica = () => {
 
 function leerCodigoQR() {
     window.ipcRender.invoke('leerQR').then((res) => {
+        console.log("Esta es la respuesta: "+res)
         window.ipcRender.invoke('getEquipoData', res).then((result) => {
             if (result !== null){
                 console.log(result)

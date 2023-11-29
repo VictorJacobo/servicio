@@ -15,7 +15,13 @@
     <nav class="navbar">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-6 d-flex align-items-center">
+          <div class="col-1 d-flex align-items-center back-link1">
+              <!-- Icono de flecha personalizado para regresar a la pantalla de inicio de sesión -->
+              <a href="#" id="back">
+                  <img src="./../assets/images/arrow.svg" class="arrow-icon">
+              </a>
+          </div>
+          <div class="col-5 d-flex align-items-center">
             <h4>Laboratorio</h4>
           </div>
           <div class="col-6 d-flex flex-row-reverse">
@@ -63,6 +69,7 @@
                 <th class = "centered-header">Apellidos</th>
                 <th class = "centered-header">Correo</th>
                 <th class = "centered-header">Carrera</th>
+                <th class="centered-header">Accion</th>
               </tr>
             </thead>
             <tbody id="users"></tbody>

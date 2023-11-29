@@ -258,7 +258,7 @@ electronIpcMain.handle('getDatos', async (event, data) => {
 //Aparto donde se consulta informacion d eun equipo
 electronIpcMain.handle('getEquipoData', async (event, data) => {
     const sql = 'SELECT * FROM equipo WHERE idEquipo=?';
-
+    console.log("La data es: "+data)
     try {
         const results = await queryAsync(sql, [data]);
         if (results.length > 0) {
@@ -315,25 +315,59 @@ electronIpcMain.handle('getConfiguracion', (event) => {
     return configData;
 });
 
+// electronIpcMain.handle('leerQR', (event) => {
+//     return new Promise((resolve, reject) => {
+//         const pythonProcess = spawn('python', ['./src/QR.py']);
+//         console.log("Hola, entré a leer QR");
+
+//         pythonProcess.stdout.on('data', (data) => {
+//             // Procesar los datos que devuelve el proceso Python
+//             const codigoQR = data.toString().trim();
+
+//             // Resolver la promesa con el código QR
+//             resolve(codigoQR);
+//         });
+
+//         pythonProcess.stderr.on('data', (data) => {
+//             // Manejar errores si los hay
+//             console.error(data.toString());
+
+//             // Rechazar la promesa en caso de error
+//             reject(data.toString());
+//         });
+//     });
+// });
+
 electronIpcMain.handle('leerQR', (event) => {
     return new Promise((resolve, reject) => {
-        const pythonProcess = spawn('python', ['./src/QR.py']);
-        console.log("Hola, entré a leer QR");
+        const command = 'python .\\src\\QR.py';
 
-        pythonProcess.stdout.on('data', (data) => {
-            // Procesar los datos que devuelve el proceso Python
-            const codigoQR = data.toString().trim();
+        const childProcess = spawn(command, { shell: true });
 
-            // Resolver la promesa con el código QR
-            resolve(codigoQR);
+        let outputData = '';
+
+        childProcess.stdout.on('data', (data) => {
+            outputData += data.toString();
         });
 
-        pythonProcess.stderr.on('data', (data) => {
-            // Manejar errores si los hay
-            console.error(data.toString());
+        childProcess.stderr.on('data', (data) => {
+            console.error(`Error en el script Python: ${data}`);
+        });
 
-            // Rechazar la promesa en caso de error
-            reject(data.toString());
+        childProcess.on('error', (error) => {
+            console.error(`Error al ejecutar el comando: ${error.message}`);
+            reject(error.message);
+        });
+
+        childProcess.on('close', (code) => {
+            if (code !== 0) {
+                console.error(`Error al ejecutar el comando. Código de salida: ${code}`);
+                reject(`Código de salida: ${code}`);
+            } else {
+                console.log('Comando ejecutado correctamente');
+                console.log('Salida del script Python:', outputData);
+                resolve(outputData);
+            }
         });
     });
 });

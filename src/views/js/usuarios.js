@@ -53,6 +53,16 @@ const listUsers = async () => {
                         <td>${usuario.Apellidos}</td>
                         <td>${usuario.Correo}</td>
                         <td>${usuario.Carrera}</td>
+                        <td class="tBotones">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-success btn-sm" onclick="editarEquipo('${usuario.Matricula_A}')">Editar</button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-danger btn-sm" onclick="eliminarEquipo('${usuario.Matricula_A}')">Eliminar</button>
+                                </div>
+                            </div>
+                        </td>
                     </tr>`;
                 });
                 $('#users').html(content)
