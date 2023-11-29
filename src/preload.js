@@ -35,6 +35,8 @@ const ipc = {
             'getTablaPrestamosDevueltos',
             'getTablaAlumnosLista',
             'registraEquipo',
+            'editaAlumnoData',
+            'eliminaAlumno',
             'registraAlumno',
             'eliminaEquipo',
             'devolverEquipo',

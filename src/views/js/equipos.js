@@ -77,7 +77,7 @@ const listUsers = async () => {
                                     <button class="btn btn-success btn-sm" onclick="editarEquipo('${equipo.idEquipo}')">Editar</button>
                                 </div>
                                 <div class="col-6">
-                                    <button class="btn btn-danger btn-sm delete"  onclick="eliminarEquipo('${equipo.idEquipo}')">Eliminar</button>
+                                    <button style="margin-left: -10px;" class="btn btn-danger btn-sm"  onclick="eliminarEquipo('${equipo.idEquipo}')">Eliminar</button>
                                 </div>
                             </div>
                         </td>
@@ -165,7 +165,7 @@ const confirmarEditar = async (id) => {
                         <div class="row">
                             <div class="col-6">
                                 <button class="btn btn-success btn-sm" onclick="editarEquipo('${idEquipo}')">Editar</button>
-                            </div>
+                            </div>  
                             <div class="col-6">
                                 <button class="btn btn-danger btn-sm" onclick="eliminarEquipo('${idEquipo}')">Eliminar</button>
                             </div>
