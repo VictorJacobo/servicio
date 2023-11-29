@@ -10,7 +10,7 @@ const ipc = {
             'openConf',
             'openUsers',
             'openlogin1',
-            'openRegistra'
+            'openRegistra',
             /*,
             'consulta',1
             'consultaE'
@@ -44,7 +44,9 @@ const ipc = {
             'listaNegra',
             'quitarlistaNegra',
             'editaEquipoData',
-            'camaras'/*
+            'camaras',
+            'getUsuarioData',
+            'editaUsuarioData'/*
             'getBooks',
             'getBook',
             'confirmAddBook',

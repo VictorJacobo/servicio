@@ -284,6 +284,33 @@ electronIpcMain.handle('getEquipoData', async (event, data) => {
     }
 });
 
+//Aparto donde se consulta informacion de un equipo
+electronIpcMain.handle('getUsuarioData', async (event, data) => {
+    const sql = 'SELECT * FROM aministradores WHERE Matricula_Admin=?';
+    console.log("La data es: " + data)
+    try {
+        const results = await queryAsync(sql, [data]);
+        if (results.length > 0) {
+            const auxE = {
+                matricula_admin: results[0].Matricula_Admin,
+                nombres: results[0].Nombres,
+                apellidos: results[0].Apellidos,
+                contrasena: results[0].Contrasena,
+            };
+            return auxE;
+        } else {
+            // Puedes manejar el caso en que no se encuentren resultados.
+            console.log("No se encontraron resultados.");
+            console.log(results.length)
+            return null;
+        }
+    } catch (error) {
+        // Manejar errores de consulta.
+        console.error(error);
+        return null;
+    }
+});
+
 
 //Aparto donde se consulta informacion d eun equipo
 electronIpcMain.handle('registraPrestamo', async (event, data) => {
@@ -624,6 +651,19 @@ electronIpcMain.handle('editaEquipoData', async (event, data) => {
     const sql = 'UPDATE equipo SET idEquipo = ?, Marca = ?, Modelo = ?, N_serie = ?, Tipo = ? WHERE idEquipo = ?;';
     try {
         await queryAsync(sql, [data.idEquipo, data.marca, data.modelo, data.nSerie, data.tipo, data.id]);
+        console.log("Editar equipo exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al editar equipo:", error);
+        return false;
+    }
+});
+
+//Apartado donde se edita un equipo
+electronIpcMain.handle('editaUsuarioData', async (event, data) => {
+    const sql = 'UPDATE aministradores SET Matricula_Admin = ?, Nombres = ?, Apellidos = ?, Contrasena = ? WHERE Matricula_Admin = ?;';
+    try {
+        await queryAsync(sql, [data.matricula_admin, data.nombres, data.apellidos, data.contrasena, data.id]);
         console.log("Editar equipo exitoso");
         return true;
     } catch (error) {
