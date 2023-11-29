@@ -4,29 +4,45 @@
 body {
     background-color: #f9fafb;
 }
+
+img, a, p, h1, h2, h3, h4, h5, h6{
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
 /*======================*/
-.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: #dee8ef; 
- }
+    background-color: #dee8ef;
+}
 
 .tabla th,
 .tabla td {
-    border-width: 1.2px; /* Puedes ajustar el grosor del borde aquí */
-    border-color: #0f0c29; /* Puedes ajustar el color del borde aquí */
+    border-width: 1.2px;
+    /* Puedes ajustar el grosor del borde aquí */
+    border-color: #0f0c29;
+    /* Puedes ajustar el color del borde aquí */
 }
+
 .tabla thead th {
-    background-color:#2471A3;
-    color: #fff; /* Cambia esto al color del texto que desees */
+    background-color: #2471A3;
+    color: #fff;
+    /* Cambia esto al color del texto que desees */
 }
+
 .container {
-    margin-top: 50px; /* Puedes ajustar el valor según tus necesidades */
+    margin-top: 50px;
+    /* Puedes ajustar el valor según tus necesidades */
 }
 
 tabla_filter {
     margin-top: 10px;
     text-align: center !important;
 }
+
 tabla_length {
     margin-top: 10px;
     text-align: center !important;
@@ -45,19 +61,20 @@ tabla_length {
 }
 
 .dataTables_length .row {
-    text-align: center ;
-    justify-content: center ;
-    align-items: center ;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .dataTables_filter {
     text-align: center !important;
-    margin-top: 10px;/* Ajusta según sea necesario */
+    margin-top: 10px;
+    /* Ajusta según sea necesario */
 }
 
 
 .dataTables_length {
-    text-align: center ;
+    text-align: center;
     margin-top: 10px;
 }
 
@@ -72,9 +89,11 @@ tabla_length {
 .tBotones {
     padding: 0 !important;
 }
-.tBotones .row{
+
+.tBotones .row {
     padding: 0 !important;
 }
+
 .card .row {
     background-color: transparent !important;
 }
@@ -98,11 +117,9 @@ tabla_length {
     background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#15297c", endColorstr="#2684b5", GradientType=1);
     /* Fondo de la imagen con tono azul */
-    background-image: linear-gradient(
-    to bottom,
-    rgba(15,12,41, 0.95),
-    rgba(15,12,41, 0.95)
-  ), url("./../images/A.avif");
+    background-image: linear-gradient(to bottom,
+            rgba(15, 12, 41, 0.95),
+            rgba(15, 12, 41, 0.95)), url("./../images/A.avif");
 
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -135,7 +152,7 @@ tabla_length {
     padding: 0;
 }
 
-.tamano{
+.tamano {
     width: 400px;
     height: 380px;
 }
@@ -150,12 +167,12 @@ tabla_length {
     text-align: center;
 }
 
-.buap{
+.buap {
     height: 400px;
     width: 430px;
 }
 
-.letras{
+.letras {
     height: 100px;
     width: 380px;
 }
@@ -168,18 +185,19 @@ tabla_length {
     justify-content: center;
     height: 100vh;
     padding: 0 30vw;
-    background: #0f0c29;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #0f0c29;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#15297c", endColorstr="#2684b5", GradientType=1);
 
     /* Fondo de la imagen con tono azul */
-    background-image: linear-gradient(
-    to bottom,
-    rgba(15,12,41, 0.95),
-    rgba(15,12,41, 0.95)
-  ), url("./../images/A.avif");
+    background-image: linear-gradient(to bottom,
+            rgba(15, 12, 41, 0.95),
+            rgba(15, 12, 41, 0.95)), url("./../images/A.avif");
 
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -227,7 +245,7 @@ tabla_length {
     padding-right: 0;
 }
 
-.back-link1 img{
+.back-link1 img {
     margin: 0;
 }
 
@@ -244,7 +262,20 @@ tabla_length {
     position: absolute;
     right: 0;
     top: 28%;
-    padding-right:  20px;
+    padding-right: 20px;
+    z-index: 5;
+    filter: invert(40%) grayscale(100%);
+}
+
+.pass{
+    position: relative;
+}
+
+.pass img{
+    position: absolute;
+    right: 0;
+    top: 33%;
+    padding-right: 20px;
     z-index: 5;
     filter: invert(40%) grayscale(100%);
 }
@@ -471,9 +502,13 @@ tabla_length {
     font-weight: 700;
 }
 
-.centered-header{
+.centered-header {
     text-align: center !important;
     vertical-align: middle !important;
+}
+
+.delete{
+    margin-left: -10px;
 }
 
 @media (max-width:720px) {

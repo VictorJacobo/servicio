@@ -38,6 +38,7 @@ const createWindowDashboard = () => {
 
     // and load the index.html of the app.
     window.loadFile(path.join(__dirname, 'views/prestamo.html'));
+    window.setFullScreen(true);
 };
 
 const createUsuarios = () => {
@@ -103,8 +104,7 @@ const createWindow = () => {
     // and load the index.html of the app.
     loginWindow.loadFile(path.join(__dirname, 'views/login.html'));
 
-    // Maximize the window to make it full screen.
-    loginWindow.maximize();
+    loginWindow.setFullScreen(true);
 };
 
 const createConf = () => {
@@ -341,6 +341,40 @@ electronIpcMain.handle('getConfiguracion', (event) => {
 electronIpcMain.handle('leerQR', (event) => {
     return new Promise((resolve, reject) => {
         const command = 'python .\\src\\QR.py';
+
+        const childProcess = spawn(command, { shell: true });
+
+        let outputData = '';
+
+        childProcess.stdout.on('data', (data) => {
+            outputData += data.toString();
+        });
+
+        childProcess.stderr.on('data', (data) => {
+            console.error(`Error en el script Python: ${data}`);
+        });
+
+        childProcess.on('error', (error) => {
+            console.error(`Error al ejecutar el comando: ${error.message}`);
+            reject(error.message);
+        });
+
+        childProcess.on('close', (code) => {
+            if (code !== 0) {
+                console.error(`Error al ejecutar el comando. Código de salida: ${code}`);
+                reject(`Código de salida: ${code}`);
+            } else {
+                console.log('Comando ejecutado correctamente');
+                console.log('Salida del script Python:', outputData);
+                resolve(outputData);
+            }
+        });
+    });
+});
+
+electronIpcMain.handle('camaras', (event) => {
+    return new Promise((resolve, reject) => {
+        const command = 'python .\\src\\verificaNumCams.py';
 
         const childProcess = spawn(command, { shell: true });
 

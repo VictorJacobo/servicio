@@ -40,7 +40,8 @@ const ipc = {
             'eliminaHistorialPrestamo',
             'listaNegra',
             'quitarlistaNegra',
-            'editaEquipoData'/*
+            'editaEquipoData',
+            'camaras'/*
             'getBooks',
             'getBook',
             'confirmAddBook',

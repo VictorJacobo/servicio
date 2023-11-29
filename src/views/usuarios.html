@@ -16,10 +16,10 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-1 d-flex align-items-center back-link1">
-              <!-- Icono de flecha personalizado para regresar a la pantalla de inicio de sesión -->
-              <a href="#" id="back">
-                  <img src="./../assets/images/arrow.svg" class="arrow-icon">
-              </a>
+            <!-- Icono de flecha personalizado para regresar a la pantalla de inicio de sesión -->
+            <a href="./prestamo.html" id="back">
+              <img src="./../assets/images/arrow.svg" class="arrow-icon">
+            </a>
           </div>
           <div class="col-5 d-flex align-items-center">
             <h4>Laboratorio</h4>
@@ -27,8 +27,6 @@
           <div class="col-6 d-flex flex-row-reverse">
             <img src="./../assets/images/user.png" onclick="toggleMenu()" id="profileUser1">
             <div class="menu-wrap" id="subMenu">
-              
-  <!-- se va a poner?
               <div class="menu">
                 <div class="user-info">
                   <img src="./../assets/images/user.png" id="profileUser2">
@@ -46,7 +44,6 @@
                   </a>
                 </div>
               </div>
-              -->
             </div>
           </div>
         </div>
@@ -64,11 +61,12 @@
           <table id="usuarios_data" class="table table-bordered table-hover tabla">
             <thead>
               <tr>
-                <th class = "centered-header">Matricula</th>
-                <th class = "centered-header">Nombres</th>
-                <th class = "centered-header">Apellidos</th>
-                <th class = "centered-header">Correo</th>
-                <th class = "centered-header">Carrera</th>
+                <th class="centered-header">Matricula</th>
+                <th class="centered-header">Nombres</th>
+                <th class="centered-header">Apellidos</th>
+                <th class="centered-header">Correo</th>
+                <th class="centered-header">Carrera</th>
+                <th class="centered-header">Contraseña</th>
                 <th class="centered-header">Accion</th>
               </tr>
             </thead>
@@ -88,10 +86,10 @@
 
   <!-- Otros scripts después -->
   <script src="./../assets/vendors/boot/js/bootstrap.js"></script>
+  <script src="./js/usuarios.js"></script>
   <script src="./../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
   <script src="./js/menu.js"></script>
   <script src="./js/login-user.js"></script>
-  <script src="./js/usuarios.js"></script>
 </body>
 
 </html>

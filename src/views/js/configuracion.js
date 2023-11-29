@@ -1,6 +1,7 @@
 let Ipserver = document.querySelector('#ipserver');
 let Ipcamara = document.querySelector('#ipcam');
 let Puertolector = document.querySelector('#puertolec');
+let camaras = document.querySelector('#nCamaras');
 
 const formSubmit = (event) => {
     event.preventDefault();
@@ -19,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 Ipserver.value=result.Ipserver;
                 Ipcamara.value=result.Ipcamara;
                 Puertolector.value=result.Puertolector;
+                window.ipcRender.invoke('camaras').then((r) => {
+                    camaras.value = r;
+                })
             }
         })
 
