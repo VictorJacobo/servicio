@@ -97,6 +97,15 @@ tabla_length {
     background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
     background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#15297c", endColorstr="#2684b5", GradientType=1);
+    /* Fondo de la imagen con tono azul */
+    background-image: linear-gradient(
+    to bottom,
+    rgba(15,12,41, 0.95),
+    rgba(15,12,41, 0.95)
+  ), url("./../images/A.avif");
+
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .section-left {
@@ -176,6 +185,16 @@ tabla_length {
     background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#15297c", endColorstr="#2684b5", GradientType=1);
+
+    /* Fondo de la imagen con tono azul */
+    background-image: linear-gradient(
+    to bottom,
+    rgba(15,12,41, 0.95),
+    rgba(15,12,41, 0.95)
+  ), url("./../images/A.avif");
+
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .login-d h4 {
@@ -201,12 +220,6 @@ tabla_length {
     text-align: left;
 }
 
-
-.btn-primary1 {
-    background-color: #254ec9;
-    font-weight: bold;
-    color: white;
-}
 
 .btn1 {
     padding: 0 10px;
