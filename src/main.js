@@ -226,11 +226,12 @@ electronIpcMain.on('openlogin1', (event) => {
 
 //Apartado donde se consulta la informacion de un alumno en base a su matricula
 electronIpcMain.handle('getDatos', async (event, data) => {
-    const { matricula } = data;
+    //const { matricula } = data;
+    console.log("La data es: "+data)
     const sql = 'SELECT * FROM alumnos WHERE Matricula_A=?';
 
     try {
-        const results = await queryAsync(sql, [matricula]);
+        const results = await queryAsync(sql, [data]);
 
         if (results.length > 0) {
             const aux = {
@@ -578,20 +579,20 @@ electronIpcMain.handle('registraEquipo', async (event, data) => {
         return false;
     }
 });
-
+/*
 // Apartado donde se consulta informacion de un alumno
 electronIpcMain.handle('registraAlumno', async (event, data) => {
     const sql = 'INSERT INTO alumnos (Matricula_A, Nombres, Apellidos, Correo, Carrera) VALUES (?, ?, ?, ?, ?)';
 
     try {
-        await queryAsync(sql, [data.matricula, data.nombres, data.apellidos, data.correo, data.carrera]);
+        await queryAsync(sql, [data.matricula, data.nombre, data.apellido, data.correo, data.carrera]);
         console.log("Registro de alumno exitoso");
         return true;
     } catch (error) {
         console.error("Error al registrar alumno:", error);
         return false;
     }
-});
+});*/
 
 
 electronIpcMain.handle('eliminaEquipo', async (event, data) => {
@@ -606,6 +607,18 @@ electronIpcMain.handle('eliminaEquipo', async (event, data) => {
     }
 });
 
+electronIpcMain.handle('eliminaAlumno', async (event, data) => {
+    const sql = 'DELETE FROM alumnos WHERE Matricula_A=?'
+    try {
+        await queryAsync(sql, [data]);
+        console.log("Eliminar alumno exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al eliminar alumno:", error);
+        return false;
+    }
+});
+
 //Apartado donde se edita un equipo
 electronIpcMain.handle('editaEquipoData', async (event, data) => {
     const sql = 'UPDATE equipo SET idEquipo = ?, Marca = ?, Modelo = ?, N_serie = ?, Tipo = ? WHERE idEquipo = ?;';
@@ -615,6 +628,19 @@ electronIpcMain.handle('editaEquipoData', async (event, data) => {
         return true;
     } catch (error) {
         console.error("Error al editar equipo:", error);
+        return false;
+    }
+});
+
+//Apartado donde se edita un alumno
+electronIpcMain.handle('editaAlumnoData', async (event, data) => {
+    const sql = 'UPDATE alumnos SET Matricula_A = ?, Nombres = ?, Apellidos = ?, Correo = ?, Carrera = ? WHERE Matricula_A = ?;';
+    try {
+        await queryAsync(sql, [data.matricula, data.nombre, data.apellido, data.correo, data.carrera, data.id]);
+        console.log("Editar alumno exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al editar al alumno:", error);
         return false;
     }
 });
