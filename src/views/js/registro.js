@@ -9,14 +9,79 @@ const AgregarAlumno = (event) => {
 
 
     // Validar que los campos no estén vacíos
-    if (!matr.value || !nomb.value || !apel.value || !email.value || !car.value) {
+    if (!matr.value && !nomb.value && !apel.value && !email.value && !car.value) {
         Swal.fire({
-            title: 'Error!',
+            title: 'Advertencia',
             text: 'Por favor, completa todos los campos',
-            icon: 'error',
+            icon: 'warning',
             confirmButtonText: 'Ok'
         });
-        return; // Detener la ejecución si hay campos vacíos
+        return; // Detener la ejecución si hay campos vacíos     
+    }else {
+        if (!matr.value) {
+            Swal.fire({
+                title: 'Advertencia',
+                text: 'Campo obligatorio*',
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+            });
+            return; // Detener la ejecución si hay campos vacíos        
+        }else {
+            if (!nomb.value) {
+                Swal.fire({
+                    title: 'Advertencia',
+                    text: 'Campo obligatorio*',
+                    icon: 'warning',
+                    confirmButtonText: 'Ok'
+                });
+                return; // Detener la ejecución si hay campos vacíos        
+            }else {
+                if (!apel.value) {
+                    Swal.fire({
+                        title: 'Advertencia',
+                        text: 'Campo obligatorio*',
+                        icon: 'warning',
+                        confirmButtonText: 'Ok'
+                    });
+                    return; // Detener la ejecución si hay campos vacíos        
+                }else {
+                    if (!email.value) {
+                        Swal.fire({
+                            title: 'Advertencia',
+                            text: 'Campo obligatorio*',
+                            icon: 'warning',
+                            confirmButtonText: 'Ok'
+                        });
+                        return; // Detener la ejecución si hay campos vacíos        
+                    }else {
+                        if (!car.value) {
+                            Swal.fire({
+                                title: 'Advertencia',
+                                text: 'Campo obligatorio*',
+                                icon: 'warning',
+                                confirmButtonText: 'Ok'
+                            });
+                            return; // Detener la ejecución si hay campos vacíos        
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    // Validar la matrícula con la expresión regular
+    if (/^\d{9}$/.test(matr.value)) {
+        // Matrícula válida, continuar
+    } else {
+        // Matrícula no válida, mostrar mensaje de error
+        Swal.fire({
+            title: 'Advertencia',
+            text: 'Matricula no valida',
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+        });
+        return;
     }
 
     // Crear el objeto data

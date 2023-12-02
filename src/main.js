@@ -621,20 +621,20 @@ electronIpcMain.handle('registraEquipo', async (event, data) => {
         return false;
     }
 });
-/*
+
 // Apartado donde se consulta informacion de un alumno
 electronIpcMain.handle('registraAlumno', async (event, data) => {
     const sql = 'INSERT INTO alumnos (Matricula_A, Nombres, Apellidos, Correo, Carrera) VALUES (?, ?, ?, ?, ?)';
 
     try {
-        await queryAsync(sql, [data.matricula, data.nombre, data.apellido, data.correo, data.carrera]);
+        await queryAsync(sql, [data.matricula, data.nombres, data.apellidos, data.correo, data.carrera]);
         console.log("Registro de alumno exitoso");
         return true;
     } catch (error) {
         console.error("Error al registrar alumno:", error);
         return false;
     }
-});*/
+});
 
 
 electronIpcMain.handle('eliminaEquipo', async (event, data) => {
