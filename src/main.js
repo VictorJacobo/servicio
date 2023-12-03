@@ -128,6 +128,13 @@ const createConf = () => {
     ConfiWindow.loadFile(path.join(__dirname, 'views/configuracion.html'));
 };
 
+
+electronIpcMain.on('confirmacion-cerrar-ventana', () => {
+    // Cierra la ventana
+    ConfiWindow.destroy();
+});
+
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -202,6 +209,14 @@ electronIpcMain.on('configuracion', (event, data) => {
 
 electronIpcMain.on('openConf', (event) => {
     createConf();
+    ConfiWindow.on('close', (event) => {
+        // Envía un mensaje al proceso de renderizado antes de cerrar la ventana
+        ConfiWindow.webContents.send('ventana-cerrandose');
+        console.log("Me cierro")
+        // Puedes prevenir el cierre inmediato si es necesario
+        // event.preventDefault();
+        // Aquí puedes realizar otras acciones necesarias antes de cerrar la ventana
+    });
     //ConfiWindow.show();
 });
 
@@ -607,6 +622,8 @@ electronIpcMain.handle('registraEquipo', async (event, data) => {
     }
 });
 
+
+// Apartado donde se consulta informacion de un alumno
 electronIpcMain.handle('registraAlumno', async (event, data) => {
     const sql = 'INSERT INTO aministradores (Matricula_A, Nombres, Apellidos,Correo, Carrera) VALUES (?, ?, ?, ?)';
 
@@ -632,19 +649,8 @@ electronIpcMain.handle('registraUsuario', async (event, data) => {
         console.error("Error al registrar alumno:", error);
         return false;
     }
-});
+});*/
 
-electronIpcMain.handle('eliminaUsuario', async (event, data) => {
-    const sql = 'DELETE FROM aministradores WHERE Matricula_Admin=?'
-    try {
-        await queryAsync(sql, [data]);
-        console.log("Eliminar equipo exitoso");
-        return true;
-    } catch (error) {
-        console.error("Error al eliminar equipo:", error);
-        return false;
-    }
-});
 
 electronIpcMain.handle('eliminaEquipo', async (event, data) => {
     const sql = 'DELETE FROM equipo WHERE idEquipo=?'

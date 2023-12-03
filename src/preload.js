@@ -11,6 +11,8 @@ const ipc = {
             'openUsers',
             'openlogin1',
             'openRegistra',
+            'updateChangesStatus',
+            'confirmacion-cerrar-ventana',
             /*,
             'consulta',1
             'consultaE'

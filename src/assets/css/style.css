@@ -154,7 +154,7 @@ tabla_length {
 
 .tamano {
     width: 400px;
-    height: 380px;
+    height: 340px;
 }
 
 .card .mb-3 {
@@ -255,6 +255,9 @@ tabla_length {
     margin-right: 5px;
 }
 
+.error-message {
+    color: red;
+  }
 
 /*  */
 
