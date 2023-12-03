@@ -676,6 +676,18 @@ electronIpcMain.handle('eliminaAlumno', async (event, data) => {
     }
 });
 
+
+electronIpcMain.handle('eliminaUsuario', async (event, data) => {
+    const sql = 'DELETE FROM aministradores WHERE Matricula_Admin=?'
+    try {
+        await queryAsync(sql, [data]);
+        console.log("Eliminar alumno exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al eliminar alumno:", error);
+        return false;
+    }
+});
 //Apartado donde se edita un equipo
 electronIpcMain.handle('editaEquipoData', async (event, data) => {
     const sql = 'UPDATE equipo SET idEquipo = ?, Marca = ?, Modelo = ?, N_serie = ?, Tipo = ? WHERE idEquipo = ?;';

@@ -21,8 +21,8 @@ const connection = mysql.createConnection({
     host: dbIP,
     user: 'root',
     password: '',
-    database: 'laboratorio',
-    port: '3307'
+    database: 'lab',
+    port: '3306'
 });
 
 connection.connect(function (err) {
