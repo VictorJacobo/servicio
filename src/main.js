@@ -625,10 +625,10 @@ electronIpcMain.handle('registraEquipo', async (event, data) => {
 
 // Apartado donde se consulta informacion de un alumno
 electronIpcMain.handle('registraAlumno', async (event, data) => {
-    const sql = 'INSERT INTO aministradores (Matricula_A, Nombres, Apellidos,Correo, Carrera) VALUES (?, ?, ?, ?)';
+    const sql = 'INSERT INTO alumnos (Matricula_A, Nombres, Apellidos,Correo, Carrera) VALUES (?, ?, ?, ?, ?)';
 
     try {
-        await queryAsync(sql, [data.matricula, data.nombres, data.apellidos, data.contrasena]);
+        await queryAsync(sql, [data.matricula, data.nombres, data.apellidos, data.correo, data.carrera]);
         console.log("Registro equipo exitoso");
         return true;
     } catch (error) {
