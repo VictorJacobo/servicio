@@ -71,7 +71,10 @@ const listUsers = async () => {
                         <td class="centered-header sorting_1">${usuario.Matricula_Admin}</td>
                         <td class="centered-header">${usuario.Nombres}</td>
                         <td class="centered-header">${usuario.Apellidos}</td>
-                        <td class="centered-header">${usuario.Contrasena}</td>
+                        <td class="pass">
+                            <input placeholder="Contraseña" type="password" class="form-control form-control-sm" id="nContra" value="${usuario.contrasena}" readonly disabled> 
+                            <img src="./../assets/images/eye.svg" id="eye1" onclick="VerPass()">
+                        </td>
                         <td class="tBotones centered-header">
                             <div class="row">
                                 <div class="col-6">
@@ -195,7 +198,10 @@ const cancelarEditar = async (Matricula_Admin) => {
                     <td class="centered-header sorting_1">${result.matricula_admin}</td>
                     <td class="centered-header">${result.nombres}</td>
                     <td class="centered-header">${result.apellidos}</td>
-                    <td class="centered-header">${result.contrasena}</td>
+                    <td class="pass">
+                            <input placeholder="Contraseña" type="password" class="form-control form-control-sm" id="nContra" value="${result.contrasena}" readonly disabled> 
+                            <img src="./../assets/images/eye.svg" id="eye1" onclick="VerPass()">
+                        </td>
                     <td class="tBotones centered-header">
                         <div class="row">
                             <div class="col-6">
@@ -238,4 +244,84 @@ function VerPass() {
         // Cambia la imagen del ojo a abierto
         openEye.src = "./../assets/images/eye-slash.svg"; // Reemplaza con la ruta correcta de la imagen abierta
     }
+}
+
+const AgregarUsuario = (event) => {
+    event.preventDefault(); // Evita que el formulario se envíe de manera convencional
+    // Obtener valores de los campos
+    const matricula = $('#nMatricula').val();
+    const nombres = $('#nNombres').val();
+    const apellidos = $('#nApellidos').val();
+    const contrasena = $('#nContra').val();
+
+    // Validar que los campos no estén vacíos
+    if (!matricula || !nombres || !apellidos || !contrasena) {
+        Swal.fire({
+            title: 'Error!',
+            text: 'Por favor, completa todos los campos',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+        });
+        return; // Detener la ejecución si hay campos vacíos
+    }
+
+    // Crear el objeto data
+    const data = { matricula, nombres, apellidos, contrasena};
+    window.ipcRender.invoke('registraUsuario', data).then((result) => {
+        if (result == true) {
+            Swal.fire({
+                title: 'Exito',
+                text: 'El equipo se ha registrado exitosamente',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            }).then(() => {
+                // Recarga la página después de cerrar la alerta de éxito
+                location.reload();
+            });
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: 'El equipo no se ha podido registrar',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+        }
+    });
+};
+
+const eliminarUsuario = (id) => {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción eliminará el equipo. ¿Estás seguro de continuar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // El usuario confirmó la eliminación, llamar a eliminaEquipo
+            window.ipcRender.invoke('eliminaUsuario', id).then((result) => {
+                if (result == true) {
+                    Swal.fire({
+                        title: 'Éxito',
+                        text: 'El equipo se ha eliminado exitosamente',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    }).then(() => {
+                        // Recarga la página después de cerrar la alerta de éxito
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'El equipo no se ha podido eliminar',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            });
+        }
+    });
 }

@@ -46,7 +46,10 @@ const ipc = {
             'editaEquipoData',
             'camaras',
             'getUsuarioData',
-            'editaUsuarioData'/*
+            'editaUsuarioData',
+            'registraAlumno',
+            'registraUsuario',
+            'eliminaUsuario'/*
             'getBooks',
             'getBook',
             'confirmAddBook',

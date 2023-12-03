@@ -190,6 +190,7 @@ const cancelarEditar = async (idEquipo) => {
     try {
         // Lógica para obtener la información actualizada del equipo con el id proporcionado
         const result = await window.ipcRender.invoke('getEquipoData', idEquipo);
+        console.log(result);
         // Actualiza solo la fila correspondiente
         let updatedRow;
         updatedRow += `
@@ -245,7 +246,7 @@ const AgregarEquipo = (event) => {
 
     // Crear el objeto data
     const data = { idEquipo, marca, modelo, nSerie, tipo };
-    window.ipcRender.invoke('registraEquipo', data).then((result) => {
+    window.ipcRender.invoke('registraAlumno', data).then((result) => {
         if (result == true) {
             Swal.fire({
                 title: 'Exito',

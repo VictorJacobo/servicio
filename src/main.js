@@ -606,21 +606,45 @@ electronIpcMain.handle('registraEquipo', async (event, data) => {
         return false;
     }
 });
-/*
-// Apartado donde se consulta informacion de un alumno
+
 electronIpcMain.handle('registraAlumno', async (event, data) => {
-    const sql = 'INSERT INTO alumnos (Matricula_A, Nombres, Apellidos, Correo, Carrera) VALUES (?, ?, ?, ?, ?)';
+    const sql = 'INSERT INTO aministradores (Matricula_A, Nombres, Apellidos,Correo, Carrera) VALUES (?, ?, ?, ?)';
 
     try {
-        await queryAsync(sql, [data.matricula, data.nombre, data.apellido, data.correo, data.carrera]);
+        await queryAsync(sql, [data.matricula, data.nombres, data.apellidos, data.contrasena]);
+        console.log("Registro equipo exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al registrar:", error);
+        return false;
+    }
+});
+
+// Apartado donde se consulta informacion de un alumno
+electronIpcMain.handle('registraUsuario', async (event, data) => {
+    const sql = 'INSERT INTO aministradores (Matricula_Admin, Nombres, Apellidos, Contrasena) VALUES (?, ?, ?, ?)';
+
+    try {
+        await queryAsync(sql, [data.matricula, data.nombres, data.apellidos, data.contrasena]);
         console.log("Registro de alumno exitoso");
         return true;
     } catch (error) {
         console.error("Error al registrar alumno:", error);
         return false;
     }
-});*/
+});
 
+electronIpcMain.handle('eliminaUsuario', async (event, data) => {
+    const sql = 'DELETE FROM aministradores WHERE Matricula_Admin=?'
+    try {
+        await queryAsync(sql, [data]);
+        console.log("Eliminar equipo exitoso");
+        return true;
+    } catch (error) {
+        console.error("Error al eliminar equipo:", error);
+        return false;
+    }
+});
 
 electronIpcMain.handle('eliminaEquipo', async (event, data) => {
     const sql = 'DELETE FROM equipo WHERE idEquipo=?'
