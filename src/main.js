@@ -649,7 +649,7 @@ electronIpcMain.handle('registraUsuario', async (event, data) => {
         console.error("Error al registrar alumno:", error);
         return false;
     }
-});*/
+});
 
 
 electronIpcMain.handle('eliminaEquipo', async (event, data) => {
